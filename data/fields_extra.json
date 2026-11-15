@@ -1,0 +1,10 @@
+[
+  {
+    "id": "field_luckau",
+    "lat": 51.8545,
+    "lon": 13.79,
+    "label": "Field Luckau: near Alteno, east of Luckau",
+    "in_training_area": true,
+    "ecostress_possible": true
+  }
+]

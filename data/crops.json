@@ -1,0 +1,822 @@
+{
+  "meta": {
+    "version": "1.0",
+    "region": "Lusatia (sandy soils, ~600 mm rain)",
+    "scales": {
+      "drought_tolerance/heat_tolerance/sandy_soil_fit": "1 = poor, 5 = very good",
+      "late_frost_risk": "1 = low (winter crop, hardened), 5 = high (frost-sensitive seedlings in May)",
+      "market": "standard = established buyers in Brandenburg; niche = small specialised market (only proposed if the farmer opts in)",
+      "forage_value": "0-5: usefulness as livestock feed or biogas feedstock (5 = grown mainly as forage/silage, e.g. lucerne, clover-grass, silage maize; 3 = whole-crop silage or green rye / grazable cover; 1 = only a by-product such as rapeseed or sunflower cake; 0 = none). Expert judgement based on common practice in German farming and biogas feedstock use; check locally."
+    },
+    "sources": {
+      "kc": "FAO-56 Table 12 (Allen et al. 1998)",
+      "root depth": "FAO-56 Table 22",
+      "tolerances, sowing/harvest, pH, rotation limits": "general agronomy for north-east Germany; to be checked with local advisers",
+      "yields, prices, variable costs": "INDICATIVE estimates for sandy Brandenburg soils, not market data. Check current prices (e.g. AMI, local traders) and KTBL cost data."
+    },
+    "rotation_rules": {
+      "max_share": {
+        "winter_rapeseed": 0.25,
+        "potatoes": 0.25,
+        "sugar_beet": 0.25,
+        "field_pea": 0.2,
+        "lupin": 0.25,
+        "maize": 0.5
+      },
+      "no_same_family_back_to_back": true,
+      "at_least_one_legume_in_4_years": true,
+      "brassica_cover_not_next_to_rapeseed": true
+    },
+    "note": "Expert-judgement table. The app shows these as assumptions a farmer or adviser can edit."
+  },
+  "crops": [
+    {
+      "id": "winter_rye",
+      "name": "Winter rye",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "winter",
+      "sow_months": [
+        9,
+        10
+      ],
+      "harvest_months": [
+        7
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.25,
+        "source": "approximation from similar crop in FAO-56"
+      },
+      "max_root_depth_m": 1.5,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 5,
+      "heat_tolerance": 4,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 5,
+      "ph_range": [
+        5.0,
+        7.0
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 214,
+      "ml_crop_name": "Rye",
+      "typical_yield": 4.5,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 170,
+      "variable_cost_eur_ha": 550,
+      "cover_note": "Green over winter",
+      "notes": "Most drought- and sand-tolerant cereal; the typical Lusatia crop. Low input.",
+      "market": "standard",
+      "forage_value": 3
+    },
+    {
+      "id": "winter_wheat",
+      "name": "Winter wheat",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "winter",
+      "sow_months": [
+        10
+      ],
+      "harvest_months": [
+        7,
+        8
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.25,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.6,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 2,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 2,
+      "ph_range": [
+        6.0,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 211,
+      "ml_crop_name": "Common wheat",
+      "typical_yield": 6.0,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 200,
+      "variable_cost_eur_ha": 700,
+      "cover_note": "Green over winter",
+      "notes": "Needs better soils and steady water; weak on light sand in dry years.",
+      "market": "standard",
+      "forage_value": 2
+    },
+    {
+      "id": "winter_barley",
+      "name": "Winter barley",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "winter",
+      "sow_months": [
+        9
+      ],
+      "harvest_months": [
+        7
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.2,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 3,
+      "heat_tolerance": 3,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        6.0,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 213,
+      "ml_crop_name": "Barley",
+      "typical_yield": 5.5,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 180,
+      "variable_cost_eur_ha": 600,
+      "cover_note": "Green over winter",
+      "notes": "Early harvest (July) avoids worst late-summer drought; leaves a long gap for a cover crop.",
+      "market": "standard",
+      "forage_value": 3
+    },
+    {
+      "id": "triticale",
+      "name": "Triticale",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "winter",
+      "sow_months": [
+        9,
+        10
+      ],
+      "harvest_months": [
+        7,
+        8
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.25,
+        "source": "approximation from similar crop in FAO-56"
+      },
+      "max_root_depth_m": 1.5,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 4,
+      "heat_tolerance": 3,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 4,
+      "ph_range": [
+        5.5,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 218,
+      "ml_crop_name": "Triticale",
+      "typical_yield": 5.0,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 175,
+      "variable_cost_eur_ha": 580,
+      "cover_note": "Green over winter",
+      "notes": "Between rye and wheat: tolerates sand better than wheat.",
+      "market": "standard",
+      "forage_value": 3
+    },
+    {
+      "id": "spring_barley",
+      "name": "Spring barley",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "spring",
+      "sow_months": [
+        3,
+        4
+      ],
+      "harvest_months": [
+        7,
+        8
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.2,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 2,
+      "late_frost_risk": 2,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        6.0,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 213,
+      "ml_crop_name": "Barley",
+      "typical_yield": 4.0,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 190,
+      "variable_cost_eur_ha": 500,
+      "cover_note": "Bare over winter unless a cover crop precedes it",
+      "notes": "Short season; sensitive to spring drought on sand.",
+      "market": "standard",
+      "forage_value": 2
+    },
+    {
+      "id": "oats",
+      "name": "Oats",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "spring",
+      "sow_months": [
+        3,
+        4
+      ],
+      "harvest_months": [
+        8
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.2,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 2,
+      "late_frost_risk": 2,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        5.0,
+        7.0
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 215,
+      "ml_crop_name": "Oats",
+      "typical_yield": 3.5,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 200,
+      "variable_cost_eur_ha": 450,
+      "cover_note": "Bare over winter unless a cover crop precedes it",
+      "notes": "Good break crop for cereal diseases (take-all); tolerates acid soils.",
+      "market": "standard",
+      "forage_value": 3
+    },
+    {
+      "id": "maize",
+      "name": "Maize (silage/grain)",
+      "group": "row crop",
+      "family": "Poaceae",
+      "season": "summer",
+      "sow_months": [
+        4,
+        5
+      ],
+      "harvest_months": [
+        9,
+        10
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.2,
+        "end": 0.6,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.5,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 3,
+      "heat_tolerance": 4,
+      "late_frost_risk": 4,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        5.8,
+        7.0
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 216,
+      "ml_crop_name": "Maize",
+      "typical_yield": 7.0,
+      "yield_unit": "t/ha grain",
+      "price_eur_per_unit": 190,
+      "variable_cost_eur_ha": 800,
+      "cover_note": "Bare from harvest to May unless cover crop; wide rows = erosion risk early",
+      "notes": "C4 crop, uses water efficiently in heat but needs July-August water; frost-sensitive at emergence.",
+      "market": "standard",
+      "forage_value": 5
+    },
+    {
+      "id": "sunflower",
+      "name": "Sunflower",
+      "group": "oilseed",
+      "family": "Asteraceae",
+      "season": "summer",
+      "sow_months": [
+        4,
+        5
+      ],
+      "harvest_months": [
+        9
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.1,
+        "end": 0.35,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.5,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 4,
+      "heat_tolerance": 5,
+      "late_frost_risk": 3,
+      "sandy_soil_fit": 4,
+      "ph_range": [
+        6.0,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 231,
+      "ml_crop_name": "Sunflower",
+      "typical_yield": 2.2,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 400,
+      "variable_cost_eur_ha": 450,
+      "cover_note": "Bare over winter unless cover crop",
+      "notes": "Deep roots reach subsoil water; tolerates heat; good for drier future summers.",
+      "market": "standard",
+      "forage_value": 1
+    },
+    {
+      "id": "winter_rapeseed",
+      "name": "Winter rapeseed",
+      "group": "oilseed",
+      "family": "Brassicaceae",
+      "season": "winter",
+      "sow_months": [
+        8
+      ],
+      "harvest_months": [
+        7
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.1,
+        "end": 0.35,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.5,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 2,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 2,
+      "ph_range": [
+        6.0,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 232,
+      "ml_crop_name": "Rapeseed and turnip rapeseed",
+      "typical_yield": 3.2,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 450,
+      "variable_cost_eur_ha": 750,
+      "cover_note": "Green over winter",
+      "notes": "Needs moist soil at sowing in August (often too dry recently); max 1 in 4 years (clubroot, pests).",
+      "market": "standard",
+      "forage_value": 1
+    },
+    {
+      "id": "potatoes",
+      "name": "Potatoes",
+      "group": "root crop",
+      "family": "Solanaceae",
+      "season": "summer",
+      "sow_months": [
+        4
+      ],
+      "harvest_months": [
+        8,
+        9
+      ],
+      "kc": {
+        "ini": 0.5,
+        "mid": 1.15,
+        "end": 0.75,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 0.6,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 1,
+      "heat_tolerance": 2,
+      "late_frost_risk": 4,
+      "sandy_soil_fit": 4,
+      "ph_range": [
+        5.0,
+        6.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 221,
+      "ml_crop_name": "Potatoes",
+      "typical_yield": 35,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 150,
+      "variable_cost_eur_ha": 2800,
+      "cover_note": "Bare after harvest; soil heavily disturbed",
+      "notes": "Shallow roots, needs irrigation in dry years; likes light, slightly acid soils. Max 1 in 4 years (nematodes).",
+      "market": "standard",
+      "forage_value": 0
+    },
+    {
+      "id": "sugar_beet",
+      "name": "Sugar beet",
+      "group": "root crop",
+      "family": "Amaranthaceae",
+      "season": "summer",
+      "sow_months": [
+        3,
+        4
+      ],
+      "harvest_months": [
+        10
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.2,
+        "end": 0.7,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.0,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 3,
+      "late_frost_risk": 2,
+      "sandy_soil_fit": 2,
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 222,
+      "ml_crop_name": "Sugar beet",
+      "typical_yield": 60,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 40,
+      "variable_cost_eur_ha": 1400,
+      "cover_note": "Long ground cover in summer, bare in winter",
+      "notes": "Needs good soils and a sugar factory contract; poor fit for acid sand.",
+      "market": "standard",
+      "forage_value": 2
+    },
+    {
+      "id": "lupin",
+      "name": "Blue lupin",
+      "group": "legume",
+      "family": "Fabaceae",
+      "season": "spring",
+      "sow_months": [
+        3,
+        4
+      ],
+      "harvest_months": [
+        8
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35,
+        "source": "approximation from similar crop in FAO-56"
+      },
+      "max_root_depth_m": 1.2,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 4,
+      "heat_tolerance": 3,
+      "late_frost_risk": 2,
+      "sandy_soil_fit": 5,
+      "ph_range": [
+        4.5,
+        6.8
+      ],
+      "n_fixing": true,
+      "ml_crop_code": 240,
+      "ml_crop_name": "Dry pulses",
+      "typical_yield": 2.0,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 300,
+      "variable_cost_eur_ha": 400,
+      "cover_note": "Bare over winter unless cover crop precedes it",
+      "notes": "Nitrogen-fixing, made for acid sandy soils; deep taproot. Protein feed. Sensitive to lime (keep pH < 6.8).",
+      "market": "standard",
+      "forage_value": 2
+    },
+    {
+      "id": "field_pea",
+      "name": "Field pea",
+      "group": "legume",
+      "family": "Fabaceae",
+      "season": "spring",
+      "sow_months": [
+        3,
+        4
+      ],
+      "harvest_months": [
+        7
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.0,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 2,
+      "late_frost_risk": 2,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        6.0,
+        7.5
+      ],
+      "n_fixing": true,
+      "ml_crop_code": 240,
+      "ml_crop_name": "Dry pulses",
+      "typical_yield": 3.0,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 270,
+      "variable_cost_eur_ha": 420,
+      "cover_note": "Early harvest (July) leaves time for a cover crop",
+      "notes": "Nitrogen-fixing; early harvest escapes late-summer drought. Max 1 in 5 years (root rot).",
+      "market": "standard",
+      "forage_value": 3
+    },
+    {
+      "id": "soybean",
+      "name": "Soybean",
+      "group": "legume",
+      "family": "Fabaceae",
+      "season": "summer",
+      "sow_months": [
+        5
+      ],
+      "harvest_months": [
+        9,
+        10
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.5,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.0,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 3,
+      "late_frost_risk": 4,
+      "sandy_soil_fit": 2,
+      "ph_range": [
+        6.0,
+        7.0
+      ],
+      "n_fixing": true,
+      "ml_crop_code": 233,
+      "ml_crop_name": "Soya",
+      "typical_yield": 2.3,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 420,
+      "variable_cost_eur_ha": 480,
+      "cover_note": "Bare over winter unless cover crop",
+      "notes": "Nitrogen-fixing; needs warmth (gaining with climate change) but also August water.",
+      "market": "standard",
+      "forage_value": 2
+    },
+    {
+      "id": "lucerne",
+      "name": "Lucerne (alfalfa)",
+      "group": "forage",
+      "family": "Fabaceae",
+      "season": "perennial",
+      "sow_months": [
+        4,
+        8
+      ],
+      "harvest_months": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.95,
+        "end": 0.9,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 2.0,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 5,
+      "heat_tolerance": 4,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        6.5,
+        7.5
+      ],
+      "n_fixing": true,
+      "ml_crop_code": 250,
+      "ml_crop_name": "Fodder crops (cereals and leguminous)",
+      "typical_yield": 8.0,
+      "yield_unit": "t DM/ha/yr",
+      "price_eur_per_unit": 150,
+      "variable_cost_eur_ha": 350,
+      "cover_note": "Year-round cover for 2-4 years",
+      "notes": "Very deep roots, very drought tolerant; fixes nitrogen; needs pH >= 6.5 (liming on acid sand). Builds soil carbon.",
+      "market": "standard",
+      "forage_value": 5
+    },
+    {
+      "id": "clover_grass",
+      "name": "Clover-grass ley",
+      "group": "forage",
+      "family": "Fabaceae",
+      "season": "perennial",
+      "sow_months": [
+        4,
+        8
+      ],
+      "harvest_months": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.05,
+        "end": 1.0,
+        "source": "approximation from similar crop in FAO-56"
+      },
+      "max_root_depth_m": 0.8,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 2,
+      "heat_tolerance": 2,
+      "late_frost_risk": 1,
+      "sandy_soil_fit": 3,
+      "ph_range": [
+        5.5,
+        7.0
+      ],
+      "n_fixing": true,
+      "ml_crop_code": 250,
+      "ml_crop_name": "Fodder crops (cereals and leguminous)",
+      "typical_yield": 7.0,
+      "yield_unit": "t DM/ha/yr",
+      "price_eur_per_unit": 130,
+      "variable_cost_eur_ha": 300,
+      "cover_note": "Year-round cover for 1-3 years",
+      "notes": "Best soil-health crop: permanent cover, roots, nitrogen. Needs a forage use (livestock, biogas).",
+      "market": "standard",
+      "forage_value": 5
+    },
+    {
+      "id": "sorghum",
+      "name": "Sorghum",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "summer",
+      "sow_months": [
+        5
+      ],
+      "harvest_months": [
+        9,
+        10
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.05,
+        "end": 0.55,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.8,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 5,
+      "heat_tolerance": 5,
+      "late_frost_risk": 4,
+      "sandy_soil_fit": 4,
+      "ph_range": [
+        5.5,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 219,
+      "ml_crop_name": "Other cereals",
+      "typical_yield": 5.0,
+      "yield_unit": "t/ha grain",
+      "price_eur_per_unit": 180,
+      "variable_cost_eur_ha": 550,
+      "cover_note": "Bare over winter unless cover crop",
+      "notes": "C4, very drought and heat tolerant; candidate replacement for maize on dry sand. Few training labels: model result marked approximate.",
+      "market": "standard",
+      "forage_value": 4
+    },
+    {
+      "id": "millet",
+      "name": "Proso millet",
+      "group": "cereal",
+      "family": "Poaceae",
+      "season": "summer",
+      "sow_months": [
+        5,
+        6
+      ],
+      "harvest_months": [
+        8,
+        9
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.0,
+        "end": 0.3,
+        "source": "FAO-56 Table 12 (Allen et al. 1998)"
+      },
+      "max_root_depth_m": 1.5,
+      "root_source": "FAO-56 Table 22",
+      "drought_tolerance": 5,
+      "heat_tolerance": 5,
+      "late_frost_risk": 4,
+      "sandy_soil_fit": 4,
+      "ph_range": [
+        5.5,
+        7.5
+      ],
+      "n_fixing": false,
+      "ml_crop_code": 219,
+      "ml_crop_name": "Other cereals",
+      "typical_yield": 2.5,
+      "yield_unit": "t/ha",
+      "price_eur_per_unit": 350,
+      "variable_cost_eur_ha": 350,
+      "cover_note": "Short season, late sowing: a cover crop can come before it",
+      "notes": "Very short season (90 days) and low water need; niche market (health food). Few training labels: model result marked approximate.",
+      "market": "niche",
+      "forage_value": 2
+    }
+  ],
+  "cover_crops": [
+    {
+      "id": "cc_phacelia",
+      "name": "Phacelia cover crop",
+      "family": "Boraginaceae",
+      "sow_months": [
+        8,
+        9
+      ],
+      "ends": "killed by frost (Dec-Jan)",
+      "n_fixing": false,
+      "notes": "Fast cover after early harvest; no relation to main crops, so it does not carry their diseases.",
+      "forage_value": 0
+    },
+    {
+      "id": "cc_mustard",
+      "name": "Mustard cover crop",
+      "family": "Brassicaceae",
+      "sow_months": [
+        8,
+        9
+      ],
+      "ends": "killed by frost",
+      "n_fixing": false,
+      "notes": "Quick cover and nutrient catch; avoid before or after rapeseed (same family).",
+      "forage_value": 1
+    },
+    {
+      "id": "cc_vetch_rye",
+      "name": "Vetch + rye cover mix",
+      "family": "Fabaceae+Poaceae",
+      "sow_months": [
+        9,
+        10
+      ],
+      "ends": "overwinters, cut or incorporated in April",
+      "n_fixing": true,
+      "notes": "Covers soil all winter and adds nitrogen; good before maize, sunflower or sorghum.",
+      "forage_value": 3
+    }
+  ]
+}

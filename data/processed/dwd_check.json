@@ -1,0 +1,33 @@
+{
+  "station_id": "00880",
+  "station_name": "Cottbus",
+  "station_lat": 51.7759,
+  "station_lon": 14.3168,
+  "station_height_m": 69.0,
+  "compared_field": "field_west",
+  "distance_km": 9.5,
+  "period": "1991-2025",
+  "n_days": 12784,
+  "temp_r_daily": 0.989,
+  "temp_r": 0.998,
+  "temp_bias_c": -0.49,
+  "tmax_bias_c": -0.58,
+  "rain_r_daily": 0.653,
+  "rain_r": 0.888,
+  "rain_r_summer": 0.769,
+  "rain_station_mm_yr": 562.0,
+  "rain_power_mm_yr": 604.0,
+  "rain_bias_pct": 7.4,
+  "hot_days_station_yr": 15.5,
+  "hot_days_power_yr": 14.5,
+  "hot_days_r": 0.903,
+  "heavy_rain_station_yr": 2.8,
+  "heavy_rain_power_yr": 1.7,
+  "source": "Deutscher Wetterdienst (DWD) Climate Data Center, daily KL, open data CC BY 4.0",
+  "summary": [
+    "Temperature: monthly r = 0.998, POWER -0.5 C vs station (daily max -0.6 C).",
+    "Rain: monthly r = 0.888, summer r = 0.769; POWER 604 vs station 562 mm/yr (+7 %).",
+    "Hot days > 30 C: POWER 14.5 vs station 15.5 per year (year-to-year r = 0.903).",
+    "Heavy rain days >= 20 mm: POWER 1.7 vs station 2.8 per year (a ~50 km grid smooths local downpours)."
+  ]
+}

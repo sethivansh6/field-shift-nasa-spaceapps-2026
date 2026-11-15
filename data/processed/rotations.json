@@ -1,0 +1,1344 @@
+{
+  "field_south": {
+    "n_candidates": 2097,
+    "soil_store_mm": 56.0,
+    "weights": {
+      "reliability": 1.0,
+      "water": 1.0,
+      "soil_health": 1.0,
+      "erosion": 1.0,
+      "pest_break": 1.0,
+      "income": 1.0,
+      "forage": 0.0
+    },
+    "constraints": {
+      "irrigation": false,
+      "forage_outlet": false,
+      "niche_ok": false,
+      "excluded": []
+    },
+    "strategies": [
+      {
+        "kind": "current",
+        "label": "Current rotation",
+        "crops_changed": 0,
+        "name": "Winter rapeseed - Winter wheat - Winter rapeseed - Winter wheat",
+        "crops": [
+          "winter_rapeseed",
+          "winter_wheat",
+          "winter_rapeseed",
+          "winter_wheat"
+        ],
+        "is_current": true,
+        "score": 56.5,
+        "components": {
+          "reliability": 52.3,
+          "water": 67.3,
+          "soil_health": 60.5,
+          "erosion": 89.2,
+          "pest_break": 10.0,
+          "income": 59.5,
+          "forage": 25.5
+        },
+        "metrics": {
+          "water_demand_mm": 419,
+          "water_deficit_mm": 148,
+          "bare_months": 1.0,
+          "gross_margin_eur_ha_indicative": 595,
+          "deficit_vs_soil_store": 2.64,
+          "legumes": 0
+        },
+        "cover_crops": [],
+        "why": [
+          "Your current rotation (assumed from the 2018 and 2022 satellite crop maps; edit it in the app)."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -238.0 mm (1991-2020) -> -254.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.6 -> 16.7 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 9.3 % (~56.0 mm in top 60 cm), pH 6.2 (SoilGrids).",
+          "Field currently bare 2.4 months/yr, usually Jul, Aug, Sep (Sentinel-2, 10 m).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 9 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter wheat: in its worst replay season (2019) predicted vigour 9 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 419 mm/yr, deficit vs rain 148 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Keeps the system you know."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Winter wheat: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 96.9,
+            "2016": 100.5,
+            "2017": 103.8,
+            "2018": 97.6,
+            "2019": 91.1,
+            "2020": 99.7,
+            "2021": 105.0,
+            "2022": 98.9,
+            "2023": 100.9,
+            "2024": 100.4,
+            "2025": 99.9
+          },
+          "worst": {
+            "year": 2019,
+            "index": 91.1
+          },
+          "typical": {
+            "index": 99.9
+          },
+          "best": {
+            "year": 2021,
+            "index": 105.0
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "small_step",
+        "label": "Small step",
+        "crops_changed": 2,
+        "name": "Winter wheat - Winter rapeseed - Soybean - Sunflower",
+        "crops": [
+          "winter_wheat",
+          "winter_rapeseed",
+          "soybean",
+          "sunflower"
+        ],
+        "is_current": false,
+        "score": 71.6,
+        "components": {
+          "reliability": 61.8,
+          "water": 54.7,
+          "soil_health": 72.4,
+          "erosion": 88.3,
+          "pest_break": 100.0,
+          "income": 52.6,
+          "forage": 34.5
+        },
+        "metrics": {
+          "water_demand_mm": 448,
+          "water_deficit_mm": 183,
+          "bare_months": 0.2,
+          "gross_margin_eur_ha_indicative": 526,
+          "deficit_vs_soil_store": 3.27,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 2,
+            "crop": "Vetch + rye cover mix"
+          },
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "Keeps 2 of your 4 crops and changes 2: an easy first step.",
+          "Brings in Soybean, Sunflower.",
+          "Trade-off: needs about 35 mm more extra water per year than the current rotation.",
+          "Soil is bare 0.2 months/yr instead of 1.0.",
+          "Adds a nitrogen-fixing legume.",
+          "Its crops held up better in the worst recent seasons (model replay 2015-2025)."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -238.0 mm (1991-2020) -> -254.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.6 -> 16.7 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 9.3 % (~56.0 mm in top 60 cm), pH 6.2 (SoilGrids).",
+          "Field currently bare 2.4 months/yr, usually Jul, Aug, Sep (Sentinel-2, 10 m).",
+          "Winter wheat: in its worst replay season (2019) predicted vigour 9 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 9 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Soybean: in its worst replay season (2019) predicted vigour 6 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Sunflower: in its worst replay season (2019) predicted vigour 6 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 448 mm/yr, deficit vs rain 183 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Better infiltration: deep roots of Sunflower leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter wheat: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Soybean: frost-sensitive seedlings; here the last frost is after 30 Apr in 1 year in 10, so sow after that.",
+          "Soybean: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Uses more water than your current rotation (183 vs 148 mm/yr deficit): riskier in dry summers unless you can irrigate."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 97.6,
+            "2016": 100.2,
+            "2017": 102.7,
+            "2018": 100.0,
+            "2019": 92.7,
+            "2020": 98.3,
+            "2021": 104.0,
+            "2022": 97.8,
+            "2023": 101.0,
+            "2024": 102.0,
+            "2025": 99.4
+          },
+          "worst": {
+            "year": 2019,
+            "index": 92.7
+          },
+          "typical": {
+            "index": 100.0
+          },
+          "best": {
+            "year": 2021,
+            "index": 104.0
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "bigger_shift",
+        "label": "Bigger shift",
+        "crops_changed": 3,
+        "name": "Winter rye - Winter rapeseed - Field pea - Sunflower",
+        "crops": [
+          "winter_rye",
+          "winter_rapeseed",
+          "field_pea",
+          "sunflower"
+        ],
+        "is_current": false,
+        "score": 71.9,
+        "components": {
+          "reliability": 66.1,
+          "water": 67.1,
+          "soil_health": 69.8,
+          "erosion": 85.6,
+          "pest_break": 100.0,
+          "income": 43.1,
+          "forage": 38.5
+        },
+        "metrics": {
+          "water_demand_mm": 387,
+          "water_deficit_mm": 148,
+          "bare_months": 0.5,
+          "gross_margin_eur_ha_indicative": 431,
+          "deficit_vs_soil_store": 2.65,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 2,
+            "crop": "Phacelia cover crop"
+          },
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "The best-scoring rotation overall for your priorities: a larger change.",
+          "Brings in Winter rye, Field pea, Sunflower.",
+          "Soil is bare 0.5 months/yr instead of 1.0.",
+          "Adds a nitrogen-fixing legume.",
+          "Its crops held up better in the worst recent seasons (model replay 2015-2025)."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -238.0 mm (1991-2020) -> -254.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.6 -> 16.7 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 9.3 % (~56.0 mm in top 60 cm), pH 6.2 (SoilGrids).",
+          "Field currently bare 2.4 months/yr, usually Jul, Aug, Sep (Sentinel-2, 10 m).",
+          "Winter rye: in its worst replay season (2019) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 9 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Field pea: in its worst replay season (2019) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Sunflower: in its worst replay season (2019) predicted vigour 6 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 387 mm/yr, deficit vs rain 148 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Better infiltration: deep roots of Winter rye, Sunflower leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "More feed for livestock or biogas (forage value 38 vs 26).",
+          "Cover crops fill bare gaps: Phacelia cover crop, Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them.",
+          "Few or no training labels for: Field pea (model result approximate, crop-table rules weigh more)."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Field pea: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 98.3,
+            "2016": 99.2,
+            "2017": 103.5,
+            "2018": 99.8,
+            "2019": 93.9,
+            "2020": 98.2,
+            "2021": 104.4,
+            "2022": 99.1,
+            "2023": 100.7,
+            "2024": 101.3,
+            "2025": 99.6
+          },
+          "worst": {
+            "year": 2019,
+            "index": 93.9
+          },
+          "typical": {
+            "index": 99.6
+          },
+          "best": {
+            "year": 2021,
+            "index": 104.4
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      }
+    ]
+  },
+  "field_southeast": {
+    "n_candidates": 2097,
+    "soil_store_mm": 57.0,
+    "weights": {
+      "reliability": 1.0,
+      "water": 1.0,
+      "soil_health": 1.0,
+      "erosion": 1.0,
+      "pest_break": 1.0,
+      "income": 1.0,
+      "forage": 0.0
+    },
+    "constraints": {
+      "irrigation": false,
+      "forage_outlet": false,
+      "niche_ok": false,
+      "excluded": []
+    },
+    "strategies": [
+      {
+        "kind": "current",
+        "label": "Current rotation",
+        "crops_changed": 0,
+        "name": "Winter rye - Winter rye - Winter rye - Winter rye",
+        "crops": [
+          "winter_rye",
+          "winter_rye",
+          "winter_rye",
+          "winter_rye"
+        ],
+        "is_current": true,
+        "score": 52.9,
+        "components": {
+          "reliability": 63.5,
+          "water": 81.8,
+          "soil_health": 60.5,
+          "erosion": 89.9,
+          "pest_break": 0.0,
+          "income": 21.5,
+          "forage": 51.0
+        },
+        "metrics": {
+          "water_demand_mm": 341,
+          "water_deficit_mm": 109,
+          "bare_months": 1.0,
+          "gross_margin_eur_ha_indicative": 215,
+          "deficit_vs_soil_store": 1.91,
+          "legumes": 0
+        },
+        "cover_crops": [],
+        "why": [
+          "Your current rotation (assumed from the 2018 and 2022 satellite crop maps; edit it in the app)."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -238.0 mm (1991-2020) -> -254.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.6 -> 16.7 per year (NASA POWER).",
+          "Soil: sandy loam, water holding 9.5 % (~57.0 mm in top 60 cm), pH 6.2 (SoilGrids).",
+          "Field currently bare 2.0 months/yr, usually Oct (Sentinel-2, 10 m).",
+          "Winter rye: in its worst replay season (2022) predicted vigour 17 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 341 mm/yr, deficit vs rain 109 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Keeps the system you know."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "No major crop-specific risk flagged."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 102.1,
+            "2016": 99.4,
+            "2017": 104.6,
+            "2018": 93.7,
+            "2019": 85.0,
+            "2020": 99.5,
+            "2021": 103.6,
+            "2022": 83.3,
+            "2023": 100.9,
+            "2024": 102.2,
+            "2025": 100.0
+          },
+          "worst": {
+            "year": 2022,
+            "index": 83.3
+          },
+          "typical": {
+            "index": 100.0
+          },
+          "best": {
+            "year": 2017,
+            "index": 104.6
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "small_step",
+        "label": "Small step",
+        "crops_changed": 2,
+        "name": "Winter rye - Winter rye - Winter rapeseed - Soybean",
+        "crops": [
+          "winter_rye",
+          "winter_rye",
+          "winter_rapeseed",
+          "soybean"
+        ],
+        "is_current": false,
+        "score": 67.1,
+        "components": {
+          "reliability": 48.7,
+          "water": 74.1,
+          "soil_health": 69.8,
+          "erosion": 94.9,
+          "pest_break": 75.0,
+          "income": 40.1,
+          "forage": 42.8
+        },
+        "metrics": {
+          "water_demand_mm": 385,
+          "water_deficit_mm": 131,
+          "bare_months": 0.5,
+          "gross_margin_eur_ha_indicative": 402,
+          "deficit_vs_soil_store": 2.29,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "Keeps 2 of your 4 crops and changes 2: an easy first step.",
+          "Brings in Winter rapeseed, Soybean.",
+          "Trade-off: needs about 22 mm more extra water per year than the current rotation.",
+          "Soil is bare 0.5 months/yr instead of 1.0.",
+          "Adds a nitrogen-fixing legume."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -238.0 mm (1991-2020) -> -254.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.6 -> 16.7 per year (NASA POWER).",
+          "Soil: sandy loam, water holding 9.5 % (~57.0 mm in top 60 cm), pH 6.2 (SoilGrids).",
+          "Field currently bare 2.0 months/yr, usually Oct (Sentinel-2, 10 m).",
+          "Winter rye: in its worst replay season (2022) predicted vigour 17 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2022) predicted vigour 20 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Soybean: in its worst replay season (2022) predicted vigour 18 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 385 mm/yr, deficit vs rain 131 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Higher indicative gross margin.",
+          "Better infiltration: deep roots of Winter rapeseed leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Soybean: frost-sensitive seedlings; here the last frost is after 30 Apr in 1 year in 10, so sow after that.",
+          "Soybean: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Uses more water than your current rotation (131 vs 109 mm/yr deficit): riskier in dry summers unless you can irrigate."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 100.4,
+            "2016": 99.9,
+            "2017": 103.0,
+            "2018": 93.1,
+            "2019": 84.9,
+            "2020": 99.2,
+            "2021": 103.4,
+            "2022": 82.2,
+            "2023": 101.0,
+            "2024": 102.0,
+            "2025": 100.0
+          },
+          "worst": {
+            "year": 2022,
+            "index": 82.2
+          },
+          "typical": {
+            "index": 100.0
+          },
+          "best": {
+            "year": 2021,
+            "index": 103.4
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "bigger_shift",
+        "label": "Bigger shift",
+        "crops_changed": 3,
+        "name": "Winter rye - Winter rapeseed - Field pea - Sunflower",
+        "crops": [
+          "winter_rye",
+          "winter_rapeseed",
+          "field_pea",
+          "sunflower"
+        ],
+        "is_current": false,
+        "score": 68.7,
+        "components": {
+          "reliability": 45.7,
+          "water": 68.0,
+          "soil_health": 69.8,
+          "erosion": 85.9,
+          "pest_break": 100.0,
+          "income": 43.1,
+          "forage": 38.5
+        },
+        "metrics": {
+          "water_demand_mm": 387,
+          "water_deficit_mm": 148,
+          "bare_months": 0.5,
+          "gross_margin_eur_ha_indicative": 431,
+          "deficit_vs_soil_store": 2.6,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 2,
+            "crop": "Phacelia cover crop"
+          },
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "The best-scoring rotation overall for your priorities: a larger change.",
+          "Brings in Winter rapeseed, Field pea, Sunflower.",
+          "Trade-off: needs about 39 mm more extra water per year than the current rotation.",
+          "Soil is bare 0.5 months/yr instead of 1.0.",
+          "Adds a nitrogen-fixing legume."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -238.0 mm (1991-2020) -> -254.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.6 -> 16.7 per year (NASA POWER).",
+          "Soil: sandy loam, water holding 9.5 % (~57.0 mm in top 60 cm), pH 6.2 (SoilGrids).",
+          "Field currently bare 2.0 months/yr, usually Oct (Sentinel-2, 10 m).",
+          "Winter rye: in its worst replay season (2022) predicted vigour 17 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2022) predicted vigour 20 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Field pea: in its worst replay season (2022) predicted vigour 17 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Sunflower: in its worst replay season (2022) predicted vigour 19 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 387 mm/yr, deficit vs rain 148 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Higher indicative gross margin.",
+          "Better infiltration: deep roots of Winter rapeseed, Sunflower leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Phacelia cover crop, Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them.",
+          "Few or no training labels for: Field pea (model result approximate, crop-table rules weigh more)."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Field pea: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Uses more water than your current rotation (148 vs 109 mm/yr deficit): riskier in dry summers unless you can irrigate."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 99.9,
+            "2016": 100.1,
+            "2017": 102.7,
+            "2018": 93.4,
+            "2019": 84.7,
+            "2020": 99.0,
+            "2021": 103.8,
+            "2022": 82.1,
+            "2023": 101.3,
+            "2024": 102.4,
+            "2025": 100.0
+          },
+          "worst": {
+            "year": 2022,
+            "index": 82.1
+          },
+          "typical": {
+            "index": 100.0
+          },
+          "best": {
+            "year": 2021,
+            "index": 103.8
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      }
+    ]
+  },
+  "field_west": {
+    "n_candidates": 2097,
+    "soil_store_mm": 49.0,
+    "weights": {
+      "reliability": 1.0,
+      "water": 1.0,
+      "soil_health": 1.0,
+      "erosion": 1.0,
+      "pest_break": 1.0,
+      "income": 1.0,
+      "forage": 0.0
+    },
+    "constraints": {
+      "irrigation": false,
+      "forage_outlet": false,
+      "niche_ok": false,
+      "excluded": []
+    },
+    "strategies": [
+      {
+        "kind": "current",
+        "label": "Current rotation",
+        "crops_changed": 0,
+        "name": "Winter rapeseed - Maize (silage/grain) - Winter rapeseed - Maize (silage/grain)",
+        "crops": [
+          "winter_rapeseed",
+          "maize",
+          "winter_rapeseed",
+          "maize"
+        ],
+        "is_current": true,
+        "score": 38.0,
+        "components": {
+          "reliability": 67.0,
+          "water": 30.0,
+          "soil_health": 29.0,
+          "erosion": 31.1,
+          "pest_break": 10.0,
+          "income": 61.0,
+          "forage": 51.0
+        },
+        "metrics": {
+          "water_demand_mm": 494,
+          "water_deficit_mm": 220,
+          "bare_months": 4.0,
+          "gross_margin_eur_ha_indicative": 610,
+          "deficit_vs_soil_store": 4.5,
+          "legumes": 0
+        },
+        "cover_crops": [],
+        "why": [
+          "Your current rotation (assumed from the 2018 and 2022 satellite crop maps; edit it in the app).",
+          "Scored as main crops only, without cover crops: about 4 bare months/yr. Sentinel-2 saw this field bare about 2.0 months/yr, so if you already sow a winter cover, your real bare time is lower."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -270.0 mm (1991-2020) -> -289.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.9 -> 16.7 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 8.2 % (~49.0 mm in top 60 cm), pH 6.3 (SoilGrids).",
+          "Field currently bare 2.0 months/yr, usually varies by year (Sentinel-2, 10 m).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Maize (silage/grain): in its worst replay season (2019) predicted vigour 4 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 494 mm/yr, deficit vs rain 220 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Keeps the system you know."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Maize (silage/grain): frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 99.0,
+            "2016": 99.0,
+            "2017": 101.1,
+            "2018": 102.6,
+            "2019": 95.2,
+            "2020": 97.7,
+            "2021": 103.5,
+            "2022": 98.0,
+            "2023": 99.0,
+            "2024": 104.1,
+            "2025": 100.6
+          },
+          "worst": {
+            "year": 2019,
+            "index": 95.2
+          },
+          "typical": {
+            "index": 99.0
+          },
+          "best": {
+            "year": 2024,
+            "index": 104.1
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "small_step",
+        "label": "Small step",
+        "crops_changed": 2,
+        "name": "Winter rye - Winter rapeseed - Soybean - Maize (silage/grain)",
+        "crops": [
+          "winter_rye",
+          "winter_rapeseed",
+          "soybean",
+          "maize"
+        ],
+        "is_current": false,
+        "score": 66.0,
+        "components": {
+          "reliability": 71.8,
+          "water": 40.7,
+          "soil_health": 72.4,
+          "erosion": 87.8,
+          "pest_break": 75.0,
+          "income": 48.0,
+          "forage": 55.8
+        },
+        "metrics": {
+          "water_demand_mm": 451,
+          "water_deficit_mm": 194,
+          "bare_months": 0.2,
+          "gross_margin_eur_ha_indicative": 480,
+          "deficit_vs_soil_store": 3.96,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 2,
+            "crop": "Vetch + rye cover mix"
+          },
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "Keeps 2 of your 4 crops and changes 2: an easy first step.",
+          "Brings in Winter rye, Soybean.",
+          "Needs about 26 mm less extra water per year than the current rotation.",
+          "Soil is bare 0.2 months/yr instead of 4.0.",
+          "Adds a nitrogen-fixing legume.",
+          "Its crops held up better in the worst recent seasons (model replay 2015-2025)."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -270.0 mm (1991-2020) -> -289.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.9 -> 16.7 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 8.2 % (~49.0 mm in top 60 cm), pH 6.3 (SoilGrids).",
+          "Field currently bare 2.0 months/yr, usually varies by year (Sentinel-2, 10 m).",
+          "Winter rye: in its worst replay season (2016) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Soybean: in its worst replay season (2019) predicted vigour 3 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Maize (silage/grain): in its worst replay season (2019) predicted vigour 4 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 451 mm/yr, deficit vs rain 194 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Lower water deficit: 194 vs 220 mm/yr.",
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Better infiltration: deep roots of Winter rye leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Soybean: frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that.",
+          "Soybean: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Maize (silage/grain): frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 100.2,
+            "2016": 98.3,
+            "2017": 101.5,
+            "2018": 102.7,
+            "2019": 95.8,
+            "2020": 97.9,
+            "2021": 103.4,
+            "2022": 98.4,
+            "2023": 98.5,
+            "2024": 103.5,
+            "2025": 100.1
+          },
+          "worst": {
+            "year": 2019,
+            "index": 95.8
+          },
+          "typical": {
+            "index": 100.1
+          },
+          "best": {
+            "year": 2024,
+            "index": 103.5
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "bigger_shift",
+        "label": "Bigger shift",
+        "crops_changed": 3,
+        "name": "Winter barley - Winter rapeseed - Soybean - Sunflower",
+        "crops": [
+          "winter_barley",
+          "winter_rapeseed",
+          "soybean",
+          "sunflower"
+        ],
+        "is_current": false,
+        "score": 71.0,
+        "components": {
+          "reliability": 70.9,
+          "water": 49.3,
+          "soil_health": 68.4,
+          "erosion": 87.8,
+          "pest_break": 100.0,
+          "income": 49.9,
+          "forage": 38.8
+        },
+        "metrics": {
+          "water_demand_mm": 420,
+          "water_deficit_mm": 173,
+          "bare_months": 0.2,
+          "gross_margin_eur_ha_indicative": 499,
+          "deficit_vs_soil_store": 3.54,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 2,
+            "crop": "Vetch + rye cover mix"
+          },
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "The best-scoring rotation overall for your priorities: a larger change.",
+          "Brings in Winter barley, Soybean, Sunflower.",
+          "Needs about 47 mm less extra water per year than the current rotation.",
+          "Soil is bare 0.2 months/yr instead of 4.0.",
+          "Adds a nitrogen-fixing legume.",
+          "Its crops held up better in the worst recent seasons (model replay 2015-2025)."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -270.0 mm (1991-2020) -> -289.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 13.9 -> 16.7 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 8.2 % (~49.0 mm in top 60 cm), pH 6.3 (SoilGrids).",
+          "Field currently bare 2.0 months/yr, usually varies by year (Sentinel-2, 10 m).",
+          "Winter barley: in its worst replay season (2019) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 5 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Soybean: in its worst replay season (2019) predicted vigour 3 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Sunflower: in its worst replay season (2020) predicted vigour 3 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 420 mm/yr, deficit vs rain 173 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Lower water deficit: 173 vs 220 mm/yr.",
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Better infiltration: deep roots of Sunflower leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Soybean: frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that.",
+          "Soybean: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 100.8,
+            "2016": 98.9,
+            "2017": 102.1,
+            "2018": 102.2,
+            "2019": 96.1,
+            "2020": 98.3,
+            "2021": 104.3,
+            "2022": 99.0,
+            "2023": 98.9,
+            "2024": 103.8,
+            "2025": 100.1
+          },
+          "worst": {
+            "year": 2019,
+            "index": 96.1
+          },
+          "typical": {
+            "index": 100.1
+          },
+          "best": {
+            "year": 2021,
+            "index": 104.3
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      }
+    ]
+  },
+  "field_luckau": {
+    "n_candidates": 2097,
+    "soil_store_mm": 46.0,
+    "weights": {
+      "reliability": 1.0,
+      "water": 1.0,
+      "soil_health": 1.0,
+      "erosion": 1.0,
+      "pest_break": 1.0,
+      "income": 1.0,
+      "forage": 0.0
+    },
+    "constraints": {
+      "irrigation": false,
+      "forage_outlet": false,
+      "niche_ok": false,
+      "excluded": []
+    },
+    "strategies": [
+      {
+        "kind": "current",
+        "label": "Current rotation",
+        "crops_changed": 0,
+        "name": "Maize (silage/grain) - Maize (silage/grain) - Maize (silage/grain) - Maize (silage/grain)",
+        "crops": [
+          "maize",
+          "maize",
+          "maize",
+          "maize"
+        ],
+        "is_current": true,
+        "score": 21.4,
+        "components": {
+          "reliability": 55.6,
+          "water": 0.0,
+          "soil_health": 18.5,
+          "erosion": 1.0,
+          "pest_break": 0.0,
+          "income": 53.0,
+          "forage": 85.0
+        },
+        "metrics": {
+          "water_demand_mm": 597,
+          "water_deficit_mm": 338,
+          "bare_months": 5.0,
+          "gross_margin_eur_ha_indicative": 530,
+          "deficit_vs_soil_store": 7.35,
+          "legumes": 0
+        },
+        "cover_crops": [],
+        "why": [
+          "Your current rotation (assumed from the 2018 and 2022 satellite crop maps; edit it in the app).",
+          "Scored as main crops only, without cover crops: about 5 bare months/yr. Sentinel-2 saw this field bare about 2.2 months/yr, so if you already sow a winter cover, your real bare time is lower."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -276.0 mm (1991-2020) -> -301.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 15.1 -> 17.9 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 7.7 % (~46.0 mm in top 60 cm), pH 6.4 (SoilGrids).",
+          "Field currently bare 2.2 months/yr, usually varies by year (Sentinel-2, 10 m).",
+          "Maize (silage/grain): in its worst replay season (2019) predicted vigour 14 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 597 mm/yr, deficit vs rain 338 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Keeps the system you know."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Maize (silage/grain): frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 97.1,
+            "2016": 100.0,
+            "2017": 102.3,
+            "2018": 103.2,
+            "2019": 86.3,
+            "2020": 92.6,
+            "2021": 102.6,
+            "2022": 95.0,
+            "2023": 100.2,
+            "2024": 103.9,
+            "2025": 97.3
+          },
+          "worst": {
+            "year": 2019,
+            "index": 86.3
+          },
+          "typical": {
+            "index": 100.0
+          },
+          "best": {
+            "year": 2024,
+            "index": 103.9
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "small_step",
+        "label": "Small step",
+        "crops_changed": 2,
+        "name": "Maize (silage/grain) - Maize (silage/grain) - Field pea - Winter rapeseed",
+        "crops": [
+          "maize",
+          "maize",
+          "field_pea",
+          "winter_rapeseed"
+        ],
+        "is_current": false,
+        "score": 56.6,
+        "components": {
+          "reliability": 48.4,
+          "water": 17.0,
+          "soil_health": 69.8,
+          "erosion": 75.7,
+          "pest_break": 75.0,
+          "income": 53.5,
+          "forage": 68.5
+        },
+        "metrics": {
+          "water_demand_mm": 479,
+          "water_deficit_mm": 237,
+          "bare_months": 0.5,
+          "gross_margin_eur_ha_indicative": 535,
+          "deficit_vs_soil_store": 5.15,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 1,
+            "crop": "Vetch + rye cover mix"
+          },
+          {
+            "after_year": 2,
+            "crop": "Phacelia cover crop"
+          },
+          {
+            "after_year": 4,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "Keeps 2 of your 4 crops and changes 2: an easy first step.",
+          "Brings in Field pea, Winter rapeseed.",
+          "Needs about 101 mm less extra water per year than the current rotation.",
+          "Soil is bare 0.5 months/yr instead of 5.0.",
+          "Adds a nitrogen-fixing legume."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -276.0 mm (1991-2020) -> -301.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 15.1 -> 17.9 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 7.7 % (~46.0 mm in top 60 cm), pH 6.4 (SoilGrids).",
+          "Field currently bare 2.2 months/yr, usually varies by year (Sentinel-2, 10 m).",
+          "Maize (silage/grain): in its worst replay season (2019) predicted vigour 14 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Field pea: in its worst replay season (2019) predicted vigour 14 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 16 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 479 mm/yr, deficit vs rain 237 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Lower water deficit: 237 vs 338 mm/yr.",
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Better infiltration: deep roots of Winter rapeseed leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Phacelia cover crop, Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them.",
+          "Few or no training labels for: Field pea (model result approximate, crop-table rules weigh more)."
+        ],
+        "risks": [
+          "Maize (silage/grain): frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that.",
+          "Field pea: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 98.5,
+            "2016": 99.2,
+            "2017": 102.9,
+            "2018": 102.5,
+            "2019": 85.8,
+            "2020": 94.8,
+            "2021": 102.7,
+            "2022": 97.2,
+            "2023": 99.2,
+            "2024": 102.4,
+            "2025": 98.9
+          },
+          "worst": {
+            "year": 2019,
+            "index": 85.8
+          },
+          "typical": {
+            "index": 99.2
+          },
+          "best": {
+            "year": 2017,
+            "index": 102.9
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      },
+      {
+        "kind": "bigger_shift",
+        "label": "Bigger shift",
+        "crops_changed": 4,
+        "name": "Winter rye - Winter rapeseed - Sunflower - Soybean",
+        "crops": [
+          "winter_rye",
+          "winter_rapeseed",
+          "sunflower",
+          "soybean"
+        ],
+        "is_current": false,
+        "score": 67.6,
+        "components": {
+          "reliability": 56.2,
+          "water": 43.9,
+          "soil_health": 72.4,
+          "erosion": 87.9,
+          "pest_break": 100.0,
+          "income": 45.5,
+          "forage": 38.8
+        },
+        "metrics": {
+          "water_demand_mm": 421,
+          "water_deficit_mm": 175,
+          "bare_months": 0.2,
+          "gross_margin_eur_ha_indicative": 455,
+          "deficit_vs_soil_store": 3.81,
+          "legumes": 1
+        },
+        "cover_crops": [
+          {
+            "after_year": 2,
+            "crop": "Vetch + rye cover mix"
+          },
+          {
+            "after_year": 3,
+            "crop": "Vetch + rye cover mix"
+          }
+        ],
+        "why": [
+          "The best-scoring rotation overall for your priorities: a larger change.",
+          "Brings in Winter rye, Winter rapeseed, Sunflower, Soybean.",
+          "Needs about 163 mm less extra water per year than the current rotation.",
+          "Soil is bare 0.2 months/yr instead of 5.0.",
+          "Adds a nitrogen-fixing legume."
+        ],
+        "evidence": [
+          "Growing-season water balance (rain - ET0, Apr-Sep): -276.0 mm (1991-2020) -> -301.0 mm (2011-2025). Source: NASA POWER, FAO-56.",
+          "Hot days > 30 C: 15.1 -> 17.9 per year (NASA POWER).",
+          "Soil: loamy sand, water holding 7.7 % (~46.0 mm in top 60 cm), pH 6.4 (SoilGrids).",
+          "Field currently bare 2.2 months/yr, usually varies by year (Sentinel-2, 10 m).",
+          "Winter rye: in its worst replay season (2019) predicted vigour 13 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Winter rapeseed: in its worst replay season (2019) predicted vigour 16 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Sunflower: in its worst replay season (2019) predicted vigour 13 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Soybean: in its worst replay season (2019) predicted vigour 13 % below its typical season here (ML model on SMAP, IMERG, GLDAS, MODIS PET).",
+          "Water: average crop demand 421 mm/yr, deficit vs rain 175 mm/yr (FAO-56 Kc x ET0)."
+        ],
+        "benefits": [
+          "Lower water deficit: 175 vs 338 mm/yr.",
+          "More months of living soil cover (erosion, carbon, nutrient catch).",
+          "Biological nitrogen reduces fertiliser need for the following crop.",
+          "More crop families: breaks pest and disease cycles.",
+          "Better infiltration: deep roots of Winter rye, Winter rapeseed, Sunflower leave channels in the subsoil, so heavy rain soaks in instead of running off.",
+          "Cover crops fill bare gaps: Vetch + rye cover mix."
+        ],
+        "gaps": [
+          "Yields, prices and costs are indicative, not market data.",
+          "Model trained on only 2 labelled years (2018, 2022); year-to-year transfer is weaker (R2 ~0.2-0.3).",
+          "Soil values are modelled at 250 m (SoilGrids); a soil test overrides them."
+        ],
+        "risks": [
+          "Winter rapeseed: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022.",
+          "Winter rapeseed needs moist soil at sowing in August, which has often been too dry recently.",
+          "Soybean: frost-sensitive seedlings; here the last frost is after 25 Apr in 1 year in 10, so sow after that.",
+          "Soybean: drought-sensitive on light soil; yield risk in dry summers like 2018/2019/2022."
+        ],
+        "check_locally": [
+          "Soil test (pH, texture, organic matter) for this field.",
+          "Market or contract for each new crop, and storage / drying.",
+          "Machinery for new crops (e.g. seed drill settings, harvest header).",
+          "Cover crop seed and sowing right after harvest.",
+          "Discuss with a local adviser (e.g. LELF Brandenburg / extension service) before changing."
+        ],
+        "seasons": {
+          "by_year": {
+            "2015": 99.8,
+            "2016": 99.1,
+            "2017": 103.2,
+            "2018": 102.4,
+            "2019": 86.5,
+            "2020": 96.2,
+            "2021": 102.6,
+            "2022": 98.3,
+            "2023": 99.0,
+            "2024": 102.0,
+            "2025": 99.0
+          },
+          "worst": {
+            "year": 2019,
+            "index": 86.5
+          },
+          "typical": {
+            "index": 99.1
+          },
+          "best": {
+            "year": 2017,
+            "index": 103.2
+          },
+          "note": "100 = typical season for these crops at this field; 90 = 10 % lower vigour."
+        }
+      }
+    ]
+  }
+}

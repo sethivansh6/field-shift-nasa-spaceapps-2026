@@ -1,0 +1,251 @@
+{
+  "data": {
+    "rows_loaded": 14407,
+    "rows_used": 13756,
+    "crop_classes_dropped": {
+      "230": 84,
+      "217": 15,
+      "212": 6
+    },
+    "crop_classes_used": [
+      211,
+      213,
+      214,
+      215,
+      216,
+      218,
+      219,
+      221,
+      222,
+      223,
+      231,
+      232,
+      233,
+      240,
+      250
+    ]
+  },
+  "blocks": 143,
+  "comparison": {
+    "ndvi_peak": {
+      "crop_mean": {
+        "params": null,
+        "spatial_cv": {
+          "r2": 0.105,
+          "r2_sd": 0.028,
+          "mae": 0.0559
+        },
+        "lusatia": {
+          "r2": 0.119,
+          "mae": 0.058
+        }
+      },
+      "crop_site": {
+        "params": null,
+        "spatial_cv": {
+          "r2": 0.37,
+          "r2_sd": 0.065,
+          "mae": 0.0467
+        },
+        "lusatia": {
+          "r2": 0.211,
+          "mae": 0.0554
+        }
+      },
+      "linear": {
+        "params": null,
+        "spatial_cv": {
+          "r2": 0.412,
+          "r2_sd": 0.067,
+          "mae": 0.045
+        },
+        "lusatia": {
+          "r2": 0.3,
+          "mae": 0.0533
+        }
+      },
+      "mlp": {
+        "params": {
+          "hidden_layer_sizes": [
+            64,
+            32
+          ]
+        },
+        "spatial_cv": {
+          "r2": 0.3,
+          "r2_sd": 0.058,
+          "mae": 0.0496
+        },
+        "lusatia": {
+          "r2": 0.301,
+          "mae": 0.0541
+        }
+      },
+      "lgbm": {
+        "params": {
+          "num_leaves": 15
+        },
+        "spatial_cv": {
+          "r2": 0.466,
+          "r2_sd": 0.057,
+          "mae": 0.0428
+        },
+        "lusatia": {
+          "r2": 0.376,
+          "mae": 0.0503
+        }
+      }
+    },
+    "ndvi_mean_mj": {
+      "crop_mean": {
+        "params": null,
+        "spatial_cv": {
+          "r2": 0.085,
+          "r2_sd": 0.038,
+          "mae": 0.0621
+        },
+        "lusatia": {
+          "r2": -0.418,
+          "mae": 0.0802
+        }
+      },
+      "crop_site": {
+        "params": null,
+        "spatial_cv": {
+          "r2": 0.19,
+          "r2_sd": 0.044,
+          "mae": 0.059
+        },
+        "lusatia": {
+          "r2": -0.462,
+          "mae": 0.0826
+        }
+      },
+      "linear": {
+        "params": null,
+        "spatial_cv": {
+          "r2": 0.358,
+          "r2_sd": 0.035,
+          "mae": 0.0517
+        },
+        "lusatia": {
+          "r2": 0.237,
+          "mae": 0.0574
+        }
+      },
+      "mlp": {
+        "params": {
+          "hidden_layer_sizes": [
+            128,
+            64
+          ]
+        },
+        "spatial_cv": {
+          "r2": 0.32,
+          "r2_sd": 0.046,
+          "mae": 0.0531
+        },
+        "lusatia": {
+          "r2": 0.375,
+          "mae": 0.0491
+        }
+      },
+      "lgbm": {
+        "params": {
+          "num_leaves": 31
+        },
+        "spatial_cv": {
+          "r2": 0.497,
+          "r2_sd": 0.032,
+          "mae": 0.0457
+        },
+        "lusatia": {
+          "r2": 0.482,
+          "mae": 0.0456
+        }
+      }
+    }
+  },
+  "target_gain_over_crop_site": {
+    "ndvi_peak": 0.165,
+    "ndvi_mean_mj": 0.944
+  },
+  "chosen_target": "ndvi_mean_mj",
+  "chosen_model": "lgbm",
+  "chosen_params": {
+    "num_leaves": 31
+  },
+  "cv_r2": 0.497,
+  "baseline_r2": 0.085,
+  "crop_site_r2": 0.19,
+  "lusatia_r2": 0.482,
+  "year_transfer": {
+    "2018->2022": {
+      "model": {
+        "r2": 0.187,
+        "mae": 0.0588
+      },
+      "crop_mean": {
+        "r2": -0.047,
+        "mae": 0.0677
+      }
+    },
+    "2022->2018": {
+      "model": {
+        "r2": 0.269,
+        "mae": 0.0553
+      },
+      "crop_mean": {
+        "r2": 0.069,
+        "mae": 0.0621
+      }
+    }
+  },
+  "quantile_coverage_lusatia": 0.792,
+  "quantiles": {
+    "raw_coverage": 0.693,
+    "raw_width": 0.1261,
+    "margin": 0.0144,
+    "calibrated_coverage": 0.792,
+    "calibrated_width": 0.1549
+  },
+  "shap_top5": [
+    "crop",
+    "precip_summer",
+    "pet_summer",
+    "site_ndvi",
+    "precip_spring"
+  ],
+  "shap_importance": {
+    "crop": 0.0208,
+    "precip_summer": 0.0166,
+    "pet_summer": 0.0148,
+    "site_ndvi": 0.0126,
+    "precip_spring": 0.0096,
+    "bdod": 0.0089,
+    "ph": 0.0068,
+    "gdd": 0.0055,
+    "awc": 0.0043,
+    "tpi": 0.0037,
+    "clay": 0.0035,
+    "soc": 0.003,
+    "elevation": 0.0028,
+    "sm_rz_anom_mj": 0.0019,
+    "heat_days": 0.0018,
+    "sm_rz_mj": 0.0014,
+    "slope": 0.0014,
+    "sand": 0.0013,
+    "late_frost_days": 0.0003
+  },
+  "lusatia_drought_check": {
+    "2018": {
+      "observed": 0.561,
+      "predicted": 0.568
+    },
+    "2022": {
+      "observed": 0.551,
+      "predicted": 0.556
+    }
+  },
+  "note": "Scores are from models trained before the final retraining on all data (train + Lusatia)."
+}

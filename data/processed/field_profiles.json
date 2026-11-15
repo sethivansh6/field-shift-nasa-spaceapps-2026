@@ -1,0 +1,1317 @@
+{
+  "field_south": {
+    "label": "Leuthen / Schorbus, south of Cottbus",
+    "lat": 51.68638,
+    "lon": 14.25412,
+    "crops_eucropmap": {
+      "2018": "Rapeseed and turnip rapeseed",
+      "2022": "Common wheat"
+    },
+    "frost": {
+      "last_spring_median": "18 Apr",
+      "last_spring_1_in_10": "30 Apr",
+      "first_autumn_median": "21 Oct",
+      "first_autumn_1_in_10": "10 Oct",
+      "last_spring_median_doy": 108.0,
+      "frost_free_days_normal": 190.0,
+      "frost_free_days_recent": 198.0,
+      "frost_free_trend": {
+        "per_decade": 2.971,
+        "p_value": 0.0876,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "heat": {
+      "heat_days_30_normal": 13.6,
+      "heat_days_30_recent": 16.7,
+      "heat_days_trend": {
+        "per_decade": 3.191,
+        "p_value": 0.0008,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "warm_nights_recent": 3.4,
+      "t_mean_normal": 9.4,
+      "t_mean_trend": {
+        "per_decade": 0.547,
+        "p_value": 0.0,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "water": {
+      "rain_year_normal_mm": 644.0,
+      "rain_apr_aug_normal_mm": 307.0,
+      "rain_apr_aug_cv_pct": 23.0,
+      "rain_apr_aug_trend": {
+        "per_decade": -4.804,
+        "p_value": 0.557,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "dry_spell_median_days": 14.0,
+      "dry_spell_recent_median_days": 12.0,
+      "dry_spell_trend": {
+        "per_decade": -0.277,
+        "p_value": 0.6298,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "heavy_rain_days_recent": 2.1,
+      "et0_year_normal_mm": 703.0,
+      "et0_trend": {
+        "per_decade": 28.455,
+        "p_value": 0.0004,
+        "significant": true,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "water_balance_apr_sep_normal_mm": -238.0,
+      "water_balance_apr_sep_recent_mm": -254.0,
+      "water_balance_trend": {
+        "per_decade": -26.14,
+        "p_value": 0.1059,
+        "significant": false,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "power_soil_wetness_trend": {
+        "per_decade": -0.009,
+        "p_value": 0.0382,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "note": "NASA POWER grid is ~50 x 60 km; field_south and field_southeast share one cell."
+    },
+    "soil_moisture_smap": {
+      "sm_rootzone_apr_sep_mean": 0.194,
+      "driest_year": 2019,
+      "wettest_year": 2017,
+      "trend": {
+        "per_decade": -0.001,
+        "p_value": 0.9001,
+        "significant": false,
+        "years": [
+          2015,
+          2025
+        ]
+      },
+      "years": [
+        2015,
+        2025
+      ]
+    },
+    "rain_imerg": {
+      "rain_apr_aug_mean_mm": 338.0,
+      "rain_apr_aug_cv_pct": 24.0,
+      "years": [
+        2001,
+        2024
+      ]
+    },
+    "vegetation_modis": {
+      "bare_months_per_year": 0.8,
+      "bare_months_recent": 0.4,
+      "bare_months_trend": {
+        "per_decade": -0.969,
+        "p_value": 0.0023,
+        "significant": true,
+        "years": [
+          2001,
+          2025
+        ]
+      },
+      "peak_ndvi_mean": 0.86,
+      "peak_ndvi_by_year": {
+        "2001": 0.94,
+        "2002": 0.89,
+        "2003": 0.81,
+        "2004": 0.88,
+        "2005": 0.78,
+        "2006": 0.84,
+        "2007": 0.89,
+        "2008": 0.76,
+        "2009": 0.89,
+        "2010": 0.87,
+        "2011": 0.84,
+        "2012": 0.88,
+        "2013": 0.9,
+        "2014": 0.83,
+        "2015": 0.92,
+        "2016": 0.91,
+        "2017": 0.77,
+        "2018": 0.85,
+        "2019": 0.86,
+        "2020": 0.84,
+        "2021": 0.86,
+        "2022": 0.88,
+        "2023": 0.89,
+        "2024": 0.8,
+        "2025": 0.91
+      },
+      "note": "Bare month = monthly max NDVI < 0.3 (good/marginal QA only); years with < 8 months of data skipped."
+    },
+    "bare_soil_sentinel2": {
+      "bare_months_per_year": 2.4,
+      "bare_months_by_year": {
+        "2018": 3,
+        "2019": 3,
+        "2020": 2,
+        "2021": 1,
+        "2022": 3,
+        "2023": 1,
+        "2024": 4,
+        "2025": 2
+      },
+      "usually_bare_months": [
+        "Jul",
+        "Aug",
+        "Sep"
+      ],
+      "bare_share_by_month": {
+        "Jan": 0.0,
+        "Feb": 0.0,
+        "Mar": 0.0,
+        "Apr": 0.11,
+        "May": 0.0,
+        "Jun": 0.0,
+        "Jul": 0.5,
+        "Aug": 0.78,
+        "Sep": 0.78,
+        "Oct": 0.43,
+        "Nov": 0.0,
+        "Dec": 0.0
+      },
+      "years_used": [
+        2018,
+        2025
+      ],
+      "clear_images": 229,
+      "note": "Sentinel-2 10 m, clear pixels within 40 m of the field point. Bare month = monthly median NDVI < 0.3. Years with < 8 months of clear data are skipped."
+    },
+    "water_use_heat_modis": {
+      "summer_et_pet_ratio_mean": 0.39,
+      "summer_et_pet_ratio_by_year": {
+        "2000": 0.28,
+        "2001": 0.46,
+        "2002": 0.41,
+        "2003": 0.4,
+        "2004": 0.36,
+        "2005": 0.52,
+        "2006": 0.28,
+        "2007": 0.38,
+        "2008": 0.32,
+        "2009": 0.35,
+        "2010": 0.47,
+        "2011": 0.5,
+        "2012": 0.41,
+        "2013": 0.44,
+        "2014": 0.46,
+        "2015": 0.4,
+        "2016": 0.38,
+        "2017": 0.48,
+        "2018": 0.3,
+        "2019": 0.38,
+        "2020": 0.34,
+        "2021": 0.48,
+        "2022": 0.31,
+        "2023": 0.39,
+        "2024": 0.34,
+        "2025": 0.32
+      },
+      "summer_lst_day_mean_c": 27.3,
+      "summer_lst_trend": {
+        "per_decade": 0.412,
+        "p_value": 0.4591,
+        "significant": false,
+        "years": [
+          2000,
+          2025
+        ]
+      },
+      "note": "ET/PET < 1 means the crop used less water than the air demanded (water stress)."
+    },
+    "groundwater_grace": {
+      "trend_cm_per_year": -0.48,
+      "p_value": 0.0,
+      "years": [
+        2002,
+        2024
+      ],
+      "note": "Regional total water storage (~300 km). Context only, not field level."
+    },
+    "soil_terrain": {
+      "sand_pct": 70.7,
+      "silt_pct": 20.4,
+      "clay_pct": 8.9,
+      "soc_pct": 2.19,
+      "ph": 6.2,
+      "bulk_density_g_cm3": 1.48,
+      "texture_class": "loamy sand",
+      "awc_pct_volume": 9.3,
+      "awc_mm_top_60cm": 56.0,
+      "elevation_m": 82.0,
+      "slope_deg": 1.1,
+      "source": "SoilGrids 250 m (modelled, 0-30 cm weighted mean); farmer soil test overrides this."
+    },
+    "stress_ecostress": {
+      "summer_esi_by_year": {
+        "2018": {
+          "esi": 0.69,
+          "n": 16,
+          "confidence": "low"
+        },
+        "2019": {
+          "esi": 0.72,
+          "n": 7,
+          "confidence": "low"
+        },
+        "2020": {
+          "esi": 0.37,
+          "n": 14,
+          "confidence": "ok"
+        },
+        "2021": {
+          "esi": 0.54,
+          "n": 21,
+          "confidence": "ok"
+        },
+        "2022": {
+          "esi": 0.39,
+          "n": 38,
+          "confidence": "ok"
+        },
+        "2023": {
+          "esi": 0.52,
+          "n": 9,
+          "confidence": "ok"
+        },
+        "2024": {
+          "esi": 0.36,
+          "n": 2,
+          "confidence": "low"
+        },
+        "2025": {
+          "esi": 0.39,
+          "n": 6,
+          "confidence": "ok"
+        },
+        "2026": {
+          "esi": 0.42,
+          "n": 4,
+          "confidence": "low"
+        }
+      },
+      "most_stressed_summer": 2020,
+      "least_stressed_summer": 2021,
+      "note": "ESI = actual / potential evapotranspiration (lower = more water stress). 2018-2019 marked low confidence: mission start 30 Jul 2018 (summer = August, after harvest) and early instrument issues. Summers with < 5 clear readings also low confidence."
+    },
+    "ecostress_quality": {
+      "overpasses_total": 1922,
+      "removed_cloudy": 748,
+      "removed_no_flag_row": 21,
+      "removed_water": 0,
+      "removed_noisy_period_2025": 27,
+      "lst_poor_accuracy_or_bad_qa": 25,
+      "kept_lst": 537,
+      "kept_esi": 247,
+      "kept_et_daily": 247,
+      "kept_sm": 571,
+      "kept_esi_midday": 134,
+      "share_cloudy_pct": 38.9,
+      "first": "2018-07-30",
+      "last": "2026-11-01"
+    }
+  },
+  "field_southeast": {
+    "label": "Near Komptendorf, south-east of Cottbus",
+    "lat": 51.694109,
+    "lon": 14.472812,
+    "crops_eucropmap": {
+      "2018": "Rye",
+      "2022": "Rye"
+    },
+    "frost": {
+      "last_spring_median": "18 Apr",
+      "last_spring_1_in_10": "30 Apr",
+      "first_autumn_median": "21 Oct",
+      "first_autumn_1_in_10": "10 Oct",
+      "last_spring_median_doy": 108.0,
+      "frost_free_days_normal": 190.0,
+      "frost_free_days_recent": 198.0,
+      "frost_free_trend": {
+        "per_decade": 2.971,
+        "p_value": 0.0876,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "heat": {
+      "heat_days_30_normal": 13.6,
+      "heat_days_30_recent": 16.7,
+      "heat_days_trend": {
+        "per_decade": 3.191,
+        "p_value": 0.0008,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "warm_nights_recent": 3.4,
+      "t_mean_normal": 9.4,
+      "t_mean_trend": {
+        "per_decade": 0.547,
+        "p_value": 0.0,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "water": {
+      "rain_year_normal_mm": 644.0,
+      "rain_apr_aug_normal_mm": 307.0,
+      "rain_apr_aug_cv_pct": 23.0,
+      "rain_apr_aug_trend": {
+        "per_decade": -4.804,
+        "p_value": 0.557,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "dry_spell_median_days": 14.0,
+      "dry_spell_recent_median_days": 12.0,
+      "dry_spell_trend": {
+        "per_decade": -0.277,
+        "p_value": 0.6298,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "heavy_rain_days_recent": 2.1,
+      "et0_year_normal_mm": 703.0,
+      "et0_trend": {
+        "per_decade": 28.452,
+        "p_value": 0.0004,
+        "significant": true,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "water_balance_apr_sep_normal_mm": -238.0,
+      "water_balance_apr_sep_recent_mm": -254.0,
+      "water_balance_trend": {
+        "per_decade": -26.139,
+        "p_value": 0.1059,
+        "significant": false,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "power_soil_wetness_trend": {
+        "per_decade": -0.009,
+        "p_value": 0.0382,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "note": "NASA POWER grid is ~50 x 60 km; field_south and field_southeast share one cell."
+    },
+    "soil_moisture_smap": {
+      "sm_rootzone_apr_sep_mean": 0.079,
+      "driest_year": 2019,
+      "wettest_year": 2017,
+      "trend": {
+        "per_decade": -0.0,
+        "p_value": 0.9827,
+        "significant": false,
+        "years": [
+          2015,
+          2025
+        ]
+      },
+      "years": [
+        2015,
+        2025
+      ]
+    },
+    "rain_imerg": {
+      "rain_apr_aug_mean_mm": 341.0,
+      "rain_apr_aug_cv_pct": 24.0,
+      "years": [
+        2001,
+        2024
+      ]
+    },
+    "vegetation_modis": {
+      "bare_months_per_year": 0.0,
+      "bare_months_recent": 0.1,
+      "bare_months_trend": {
+        "per_decade": 0.062,
+        "p_value": 0.2764,
+        "significant": false,
+        "years": [
+          2001,
+          2025
+        ]
+      },
+      "peak_ndvi_mean": 0.74,
+      "peak_ndvi_by_year": {
+        "2001": 0.79,
+        "2002": 0.76,
+        "2003": 0.78,
+        "2004": 0.73,
+        "2005": 0.76,
+        "2006": 0.65,
+        "2007": 0.78,
+        "2008": 0.76,
+        "2009": 0.75,
+        "2010": 0.79,
+        "2011": 0.71,
+        "2012": 0.76,
+        "2013": 0.75,
+        "2014": 0.75,
+        "2015": 0.81,
+        "2016": 0.84,
+        "2017": 0.71,
+        "2018": 0.8,
+        "2019": 0.69,
+        "2020": 0.64,
+        "2021": 0.65,
+        "2022": 0.63,
+        "2023": 0.77,
+        "2024": 0.71,
+        "2025": 0.71
+      },
+      "note": "Bare month = monthly max NDVI < 0.3 (good/marginal QA only); years with < 8 months of data skipped."
+    },
+    "bare_soil_sentinel2": {
+      "bare_months_per_year": 2.0,
+      "bare_months_by_year": {
+        "2018": 2,
+        "2019": 3,
+        "2020": 3,
+        "2022": 1,
+        "2023": 3,
+        "2024": 1,
+        "2025": 1
+      },
+      "usually_bare_months": [
+        "Oct"
+      ],
+      "bare_share_by_month": {
+        "Jan": 0.2,
+        "Feb": 0.17,
+        "Mar": 0.0,
+        "Apr": 0.14,
+        "May": 0.44,
+        "Jun": 0.0,
+        "Jul": 0.25,
+        "Aug": 0.14,
+        "Sep": 0.22,
+        "Oct": 0.62,
+        "Nov": 0.17,
+        "Dec": 0.2
+      },
+      "years_used": [
+        2018,
+        2025
+      ],
+      "clear_images": 221,
+      "note": "Sentinel-2 10 m, clear pixels within 40 m of the field point. Bare month = monthly median NDVI < 0.3. Years with < 8 months of clear data are skipped."
+    },
+    "water_use_heat_modis": {
+      "summer_et_pet_ratio_mean": 0.36,
+      "summer_et_pet_ratio_by_year": {
+        "2000": 0.26,
+        "2001": 0.39,
+        "2002": 0.36,
+        "2003": 0.3,
+        "2004": 0.31,
+        "2005": 0.43,
+        "2006": 0.33,
+        "2007": 0.38,
+        "2008": 0.32,
+        "2009": 0.37,
+        "2010": 0.42,
+        "2011": 0.38,
+        "2012": 0.34,
+        "2013": 0.42,
+        "2014": 0.37,
+        "2015": 0.37,
+        "2016": 0.36,
+        "2017": 0.4,
+        "2018": 0.28,
+        "2019": 0.22,
+        "2020": 0.38,
+        "2021": 0.46,
+        "2022": 0.24,
+        "2023": 0.4,
+        "2024": 0.45,
+        "2025": 0.33
+      },
+      "summer_lst_day_mean_c": 27.3,
+      "summer_lst_trend": {
+        "per_decade": 0.601,
+        "p_value": 0.3251,
+        "significant": false,
+        "years": [
+          2000,
+          2025
+        ]
+      },
+      "note": "ET/PET < 1 means the crop used less water than the air demanded (water stress)."
+    },
+    "groundwater_grace": {
+      "trend_cm_per_year": -0.48,
+      "p_value": 0.0,
+      "years": [
+        2002,
+        2024
+      ],
+      "note": "Regional total water storage (~300 km). Context only, not field level."
+    },
+    "soil_terrain": {
+      "sand_pct": 68.9,
+      "silt_pct": 19.4,
+      "clay_pct": 11.7,
+      "soc_pct": 2.1,
+      "ph": 6.2,
+      "bulk_density_g_cm3": 1.47,
+      "texture_class": "sandy loam",
+      "awc_pct_volume": 9.5,
+      "awc_mm_top_60cm": 57.0,
+      "elevation_m": 83.0,
+      "slope_deg": 0.9,
+      "source": "SoilGrids 250 m (modelled, 0-30 cm weighted mean); farmer soil test overrides this."
+    },
+    "stress_ecostress": {
+      "summer_esi_by_year": {
+        "2018": {
+          "esi": 0.7,
+          "n": 17,
+          "confidence": "low"
+        },
+        "2019": {
+          "esi": 0.65,
+          "n": 8,
+          "confidence": "low"
+        },
+        "2020": {
+          "esi": 0.31,
+          "n": 13,
+          "confidence": "ok"
+        },
+        "2021": {
+          "esi": 0.35,
+          "n": 17,
+          "confidence": "ok"
+        },
+        "2022": {
+          "esi": 0.33,
+          "n": 37,
+          "confidence": "ok"
+        },
+        "2023": {
+          "esi": 0.51,
+          "n": 6,
+          "confidence": "ok"
+        },
+        "2024": {
+          "esi": 0.45,
+          "n": 1,
+          "confidence": "low"
+        },
+        "2025": {
+          "esi": 0.33,
+          "n": 6,
+          "confidence": "ok"
+        },
+        "2026": {
+          "esi": 0.49,
+          "n": 4,
+          "confidence": "low"
+        }
+      },
+      "most_stressed_summer": 2020,
+      "least_stressed_summer": 2023,
+      "note": "ESI = actual / potential evapotranspiration (lower = more water stress). 2018-2019 marked low confidence: mission start 30 Jul 2018 (summer = August, after harvest) and early instrument issues. Summers with < 5 clear readings also low confidence."
+    },
+    "ecostress_quality": {
+      "overpasses_total": 1922,
+      "removed_cloudy": 728,
+      "removed_no_flag_row": 21,
+      "removed_water": 0,
+      "removed_noisy_period_2025": 27,
+      "lst_poor_accuracy_or_bad_qa": 32,
+      "kept_lst": 507,
+      "kept_esi": 221,
+      "kept_et_daily": 221,
+      "kept_sm": 570,
+      "kept_esi_midday": 119,
+      "share_cloudy_pct": 37.9,
+      "first": "2018-07-30",
+      "last": "2026-11-01"
+    }
+  },
+  "field_west": {
+    "label": "Near Milkersdorf / Krieschow, west of Cottbus",
+    "lat": 51.777853,
+    "lon": 14.178775,
+    "crops_eucropmap": {
+      "2018": "Rapeseed and turnip rapeseed",
+      "2022": "Maize"
+    },
+    "frost": {
+      "last_spring_median": "16 Apr",
+      "last_spring_1_in_10": "25 Apr",
+      "first_autumn_median": "23 Oct",
+      "first_autumn_1_in_10": "11 Oct",
+      "last_spring_median_doy": 106.0,
+      "frost_free_days_normal": 196.0,
+      "frost_free_days_recent": 206.0,
+      "frost_free_trend": {
+        "per_decade": 5.103,
+        "p_value": 0.0164,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "heat": {
+      "heat_days_30_normal": 13.9,
+      "heat_days_30_recent": 16.7,
+      "heat_days_trend": {
+        "per_decade": 2.982,
+        "p_value": 0.001,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "warm_nights_recent": 3.1,
+      "t_mean_normal": 9.5,
+      "t_mean_trend": {
+        "per_decade": 0.558,
+        "p_value": 0.0,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "water": {
+      "rain_year_normal_mm": 602.0,
+      "rain_apr_aug_normal_mm": 284.0,
+      "rain_apr_aug_cv_pct": 24.0,
+      "rain_apr_aug_trend": {
+        "per_decade": -3.137,
+        "p_value": 0.6936,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "dry_spell_median_days": 14.0,
+      "dry_spell_recent_median_days": 12.0,
+      "dry_spell_trend": {
+        "per_decade": -0.593,
+        "p_value": 0.3599,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "heavy_rain_days_recent": 2.2,
+      "et0_year_normal_mm": 705.0,
+      "et0_trend": {
+        "per_decade": 29.181,
+        "p_value": 0.0002,
+        "significant": true,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "water_balance_apr_sep_normal_mm": -270.0,
+      "water_balance_apr_sep_recent_mm": -289.0,
+      "water_balance_trend": {
+        "per_decade": -28.039,
+        "p_value": 0.0735,
+        "significant": false,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "power_soil_wetness_trend": {
+        "per_decade": -0.008,
+        "p_value": 0.0476,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "note": "NASA POWER grid is ~50 x 60 km; field_south and field_southeast share one cell."
+    },
+    "soil_moisture_smap": {
+      "sm_rootzone_apr_sep_mean": 0.124,
+      "driest_year": 2019,
+      "wettest_year": 2017,
+      "trend": {
+        "per_decade": 0.001,
+        "p_value": 0.9363,
+        "significant": false,
+        "years": [
+          2015,
+          2025
+        ]
+      },
+      "years": [
+        2015,
+        2025
+      ]
+    },
+    "rain_imerg": {
+      "rain_apr_aug_mean_mm": 334.0,
+      "rain_apr_aug_cv_pct": 23.0,
+      "years": [
+        2001,
+        2024
+      ]
+    },
+    "vegetation_modis": {
+      "bare_months_per_year": 0.0,
+      "bare_months_recent": 0.1,
+      "bare_months_trend": {
+        "per_decade": -0.008,
+        "p_value": 0.8932,
+        "significant": false,
+        "years": [
+          2001,
+          2025
+        ]
+      },
+      "peak_ndvi_mean": 0.82,
+      "peak_ndvi_by_year": {
+        "2001": 0.82,
+        "2002": 0.87,
+        "2003": 0.73,
+        "2004": 0.9,
+        "2005": 0.81,
+        "2006": 0.77,
+        "2007": 0.86,
+        "2008": 0.74,
+        "2009": 0.8,
+        "2010": 0.82,
+        "2011": 0.86,
+        "2012": 0.86,
+        "2013": 0.83,
+        "2014": 0.89,
+        "2015": 0.91,
+        "2016": 0.81,
+        "2017": 0.84,
+        "2018": 0.82,
+        "2019": 0.76,
+        "2020": 0.82,
+        "2021": 0.85,
+        "2022": 0.74,
+        "2023": 0.8,
+        "2024": 0.85,
+        "2025": 0.85
+      },
+      "note": "Bare month = monthly max NDVI < 0.3 (good/marginal QA only); years with < 8 months of data skipped."
+    },
+    "bare_soil_sentinel2": {
+      "bare_months_per_year": 2.0,
+      "bare_months_by_year": {
+        "2018": 0,
+        "2019": 5,
+        "2020": 2,
+        "2022": 5,
+        "2023": 0,
+        "2024": 0,
+        "2025": 2
+      },
+      "usually_bare_months": [],
+      "bare_share_by_month": {
+        "Jan": 0.0,
+        "Feb": 0.0,
+        "Mar": 0.0,
+        "Apr": 0.12,
+        "May": 0.22,
+        "Jun": 0.0,
+        "Jul": 0.29,
+        "Aug": 0.12,
+        "Sep": 0.44,
+        "Oct": 0.22,
+        "Nov": 0.33,
+        "Dec": 0.2
+      },
+      "years_used": [
+        2018,
+        2025
+      ],
+      "clear_images": 238,
+      "note": "Sentinel-2 10 m, clear pixels within 40 m of the field point. Bare month = monthly median NDVI < 0.3. Years with < 8 months of clear data are skipped."
+    },
+    "water_use_heat_modis": {
+      "summer_et_pet_ratio_mean": 0.44,
+      "summer_et_pet_ratio_by_year": {
+        "2000": 0.4,
+        "2001": 0.63,
+        "2002": 0.39,
+        "2003": 0.34,
+        "2004": 0.38,
+        "2005": 0.52,
+        "2006": 0.38,
+        "2007": 0.71,
+        "2008": 0.45,
+        "2009": 0.42,
+        "2010": 0.43,
+        "2011": 0.61,
+        "2012": 0.38,
+        "2013": 0.46,
+        "2014": 0.4,
+        "2015": 0.37,
+        "2016": 0.48,
+        "2017": 0.38,
+        "2018": 0.42,
+        "2019": 0.31,
+        "2020": 0.4,
+        "2021": 0.45,
+        "2022": 0.36,
+        "2023": 0.44,
+        "2024": 0.45,
+        "2025": 0.39
+      },
+      "summer_lst_day_mean_c": 26.9,
+      "summer_lst_trend": {
+        "per_decade": 0.651,
+        "p_value": 0.2483,
+        "significant": false,
+        "years": [
+          2000,
+          2025
+        ]
+      },
+      "note": "ET/PET < 1 means the crop used less water than the air demanded (water stress)."
+    },
+    "groundwater_grace": {
+      "trend_cm_per_year": -0.48,
+      "p_value": 0.0,
+      "years": [
+        2002,
+        2024
+      ],
+      "note": "Regional total water storage (~300 km). Context only, not field level."
+    },
+    "soil_terrain": {
+      "sand_pct": 75.7,
+      "silt_pct": 15.7,
+      "clay_pct": 8.6,
+      "soc_pct": 2.09,
+      "ph": 6.3,
+      "bulk_density_g_cm3": 1.5,
+      "texture_class": "loamy sand",
+      "awc_pct_volume": 8.2,
+      "awc_mm_top_60cm": 49.0,
+      "elevation_m": 57.0,
+      "slope_deg": 1.6,
+      "source": "SoilGrids 250 m (modelled, 0-30 cm weighted mean); farmer soil test overrides this."
+    },
+    "stress_ecostress": {
+      "summer_esi_by_year": {
+        "2018": {
+          "esi": 0.76,
+          "n": 17,
+          "confidence": "low"
+        },
+        "2019": {
+          "esi": 0.73,
+          "n": 7,
+          "confidence": "low"
+        },
+        "2020": {
+          "esi": 0.44,
+          "n": 13,
+          "confidence": "ok"
+        },
+        "2021": {
+          "esi": 0.56,
+          "n": 18,
+          "confidence": "ok"
+        },
+        "2022": {
+          "esi": 0.51,
+          "n": 37,
+          "confidence": "ok"
+        },
+        "2023": {
+          "esi": 0.6,
+          "n": 8,
+          "confidence": "ok"
+        },
+        "2024": {
+          "esi": 0.54,
+          "n": 1,
+          "confidence": "low"
+        },
+        "2025": {
+          "esi": 0.49,
+          "n": 6,
+          "confidence": "ok"
+        },
+        "2026": {
+          "esi": 0.6,
+          "n": 4,
+          "confidence": "low"
+        }
+      },
+      "most_stressed_summer": 2020,
+      "least_stressed_summer": 2023,
+      "note": "ESI = actual / potential evapotranspiration (lower = more water stress). 2018-2019 marked low confidence: mission start 30 Jul 2018 (summer = August, after harvest) and early instrument issues. Summers with < 5 clear readings also low confidence."
+    },
+    "ecostress_quality": {
+      "overpasses_total": 1922,
+      "removed_cloudy": 744,
+      "removed_no_flag_row": 21,
+      "removed_water": 0,
+      "removed_noisy_period_2025": 27,
+      "lst_poor_accuracy_or_bad_qa": 28,
+      "kept_lst": 509,
+      "kept_esi": 237,
+      "kept_et_daily": 237,
+      "kept_sm": 568,
+      "kept_esi_midday": 128,
+      "share_cloudy_pct": 38.7,
+      "first": "2018-07-30",
+      "last": "2026-11-01"
+    }
+  },
+  "field_luckau": {
+    "label": "Field Luckau: near Alteno, east of Luckau",
+    "lat": 51.8545,
+    "lon": 13.79,
+    "crops_eucropmap": {
+      "2018": "Maize",
+      "2022": "Maize"
+    },
+    "frost": {
+      "last_spring_median": "16 Apr",
+      "last_spring_1_in_10": "25 Apr",
+      "first_autumn_median": "27 Oct",
+      "first_autumn_1_in_10": "13 Oct",
+      "last_spring_median_doy": 106.0,
+      "frost_free_days_normal": 197.0,
+      "frost_free_days_recent": 204.0,
+      "frost_free_trend": {
+        "per_decade": 4.19,
+        "p_value": 0.0395,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "heat": {
+      "heat_days_30_normal": 15.1,
+      "heat_days_30_recent": 17.9,
+      "heat_days_trend": {
+        "per_decade": 2.964,
+        "p_value": 0.0016,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "warm_nights_recent": 3.6,
+      "t_mean_normal": 9.6,
+      "t_mean_trend": {
+        "per_decade": 0.563,
+        "p_value": 0.0,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      }
+    },
+    "water": {
+      "rain_year_normal_mm": 590.0,
+      "rain_apr_aug_normal_mm": 276.0,
+      "rain_apr_aug_cv_pct": 24.0,
+      "rain_apr_aug_trend": {
+        "per_decade": -4.451,
+        "p_value": 0.5631,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "dry_spell_median_days": 14.0,
+      "dry_spell_recent_median_days": 13.0,
+      "dry_spell_trend": {
+        "per_decade": -0.435,
+        "p_value": 0.4682,
+        "significant": false,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "heavy_rain_days_recent": 2.1,
+      "et0_year_normal_mm": 701.0,
+      "et0_trend": {
+        "per_decade": 29.894,
+        "p_value": 0.0001,
+        "significant": true,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "water_balance_apr_sep_normal_mm": -276.0,
+      "water_balance_apr_sep_recent_mm": -301.0,
+      "water_balance_trend": {
+        "per_decade": -30.777,
+        "p_value": 0.048,
+        "significant": true,
+        "years": [
+          1984,
+          2025
+        ]
+      },
+      "power_soil_wetness_trend": {
+        "per_decade": -0.009,
+        "p_value": 0.0289,
+        "significant": true,
+        "years": [
+          1981,
+          2025
+        ]
+      },
+      "note": "NASA POWER grid is ~50 x 60 km; field_south and field_southeast share one cell."
+    },
+    "soil_moisture_smap": {
+      "sm_rootzone_apr_sep_mean": 0.126,
+      "driest_year": 2025,
+      "wettest_year": 2017,
+      "trend": {
+        "per_decade": -0.003,
+        "p_value": 0.818,
+        "significant": false,
+        "years": [
+          2015,
+          2025
+        ]
+      },
+      "years": [
+        2015,
+        2025
+      ]
+    },
+    "rain_imerg": {
+      "rain_apr_aug_mean_mm": 326.0,
+      "rain_apr_aug_cv_pct": 24.0,
+      "years": [
+        2001,
+        2024
+      ]
+    },
+    "vegetation_modis": {
+      "bare_months_per_year": 0.8,
+      "bare_months_recent": 0.3,
+      "bare_months_trend": {
+        "per_decade": -0.946,
+        "p_value": 0.0024,
+        "significant": true,
+        "years": [
+          2001,
+          2025
+        ]
+      },
+      "peak_ndvi_mean": 0.82,
+      "peak_ndvi_by_year": {
+        "2001": 0.81,
+        "2002": 0.82,
+        "2003": 0.86,
+        "2004": 0.76,
+        "2005": 0.86,
+        "2006": 0.76,
+        "2007": 0.78,
+        "2008": 0.74,
+        "2009": 0.88,
+        "2010": 0.82,
+        "2011": 0.86,
+        "2012": 0.84,
+        "2013": 0.76,
+        "2014": 0.82,
+        "2015": 0.87,
+        "2016": 0.85,
+        "2017": 0.85,
+        "2018": 0.74,
+        "2019": 0.84,
+        "2020": 0.89,
+        "2021": 0.77,
+        "2022": 0.79,
+        "2023": 0.82,
+        "2024": 0.78,
+        "2025": 0.87
+      },
+      "note": "Bare month = monthly max NDVI < 0.3 (good/marginal QA only); years with < 8 months of data skipped."
+    },
+    "bare_soil_sentinel2": {
+      "bare_months_per_year": 2.2,
+      "bare_months_by_year": {
+        "2018": 4,
+        "2019": 3,
+        "2020": 2,
+        "2021": 2,
+        "2022": 2,
+        "2023": 3,
+        "2024": 0,
+        "2025": 2
+      },
+      "usually_bare_months": [],
+      "bare_share_by_month": {
+        "Jan": 0.0,
+        "Feb": 0.0,
+        "Mar": 0.0,
+        "Apr": 0.12,
+        "May": 0.44,
+        "Jun": 0.11,
+        "Jul": 0.25,
+        "Aug": 0.22,
+        "Sep": 0.44,
+        "Oct": 0.44,
+        "Nov": 0.14,
+        "Dec": 0.0
+      },
+      "years_used": [
+        2018,
+        2025
+      ],
+      "clear_images": 451,
+      "note": "Sentinel-2 10 m, clear pixels within 40 m of the field point. Bare month = monthly median NDVI < 0.3. Years with < 8 months of clear data are skipped."
+    },
+    "water_use_heat_modis": {
+      "summer_et_pet_ratio_mean": 0.41,
+      "summer_et_pet_ratio_by_year": {
+        "2000": 0.23,
+        "2001": 0.28,
+        "2002": 0.56,
+        "2003": 0.35,
+        "2004": 0.32,
+        "2005": 0.51,
+        "2006": 0.35,
+        "2007": 0.52,
+        "2008": 0.42,
+        "2009": 0.47,
+        "2010": 0.43,
+        "2011": 0.45,
+        "2012": 0.53,
+        "2013": 0.46,
+        "2014": 0.34,
+        "2015": 0.45,
+        "2016": 0.58,
+        "2017": 0.38,
+        "2018": 0.33,
+        "2019": 0.21,
+        "2020": 0.38,
+        "2021": 0.35,
+        "2022": 0.38,
+        "2023": 0.42,
+        "2024": 0.33,
+        "2025": 0.53
+      },
+      "summer_lst_day_mean_c": 26.9,
+      "summer_lst_trend": {
+        "per_decade": 0.555,
+        "p_value": 0.3535,
+        "significant": false,
+        "years": [
+          2000,
+          2025
+        ]
+      },
+      "note": "ET/PET < 1 means the crop used less water than the air demanded (water stress)."
+    },
+    "groundwater_grace": {
+      "trend_cm_per_year": -0.48,
+      "p_value": 0.0,
+      "years": [
+        2002,
+        2024
+      ],
+      "note": "Regional total water storage (~300 km). Context only, not field level."
+    },
+    "soil_terrain": {
+      "sand_pct": 79.2,
+      "silt_pct": 14.2,
+      "clay_pct": 6.6,
+      "soc_pct": 2.25,
+      "ph": 6.4,
+      "bulk_density_g_cm3": 1.48,
+      "texture_class": "loamy sand",
+      "awc_pct_volume": 7.7,
+      "awc_mm_top_60cm": 46.0,
+      "elevation_m": 58.0,
+      "slope_deg": 1.3,
+      "source": "SoilGrids 250 m (modelled, 0-30 cm weighted mean); farmer soil test overrides this."
+    },
+    "stress_ecostress": {
+      "summer_esi_by_year": {},
+      "most_stressed_summer": null,
+      "least_stressed_summer": null,
+      "note": "ESI = actual / potential evapotranspiration (lower = more water stress). 2018-2019 marked low confidence: mission start 30 Jul 2018 (summer = August, after harvest) and early instrument issues. Summers with < 5 clear readings also low confidence."
+    },
+    "ecostress_quality": null
+  }
+}

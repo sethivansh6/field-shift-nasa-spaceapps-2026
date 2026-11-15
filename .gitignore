@@ -1,0 +1,30 @@
+# Python environment and caches (large, rebuilt with: pip install -r requirements.txt)
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Credentials and local settings (never commit)
+.env
+*.env
+.streamlit/secrets.toml
+*credentials*
+*.pem
+*.key
+
+# Raw downloads (re-created by the src/extract_*.py scripts)
+data/raw/
+data/processed/training_parts/
+
+# Backups and scratch
+*_backup*/
+data_backup*/
+models_backup*/
+*.log
+nohup.out
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/

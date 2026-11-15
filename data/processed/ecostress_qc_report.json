@@ -1,0 +1,50 @@
+{
+  "field_south": {
+    "overpasses_total": 1922,
+    "removed_cloudy": 748,
+    "removed_no_flag_row": 21,
+    "removed_water": 0,
+    "removed_noisy_period_2025": 27,
+    "lst_poor_accuracy_or_bad_qa": 25,
+    "kept_lst": 537,
+    "kept_esi": 247,
+    "kept_et_daily": 247,
+    "kept_sm": 571,
+    "kept_esi_midday": 134,
+    "share_cloudy_pct": 38.9,
+    "first": "2018-07-30",
+    "last": "2026-11-01"
+  },
+  "field_southeast": {
+    "overpasses_total": 1922,
+    "removed_cloudy": 728,
+    "removed_no_flag_row": 21,
+    "removed_water": 0,
+    "removed_noisy_period_2025": 27,
+    "lst_poor_accuracy_or_bad_qa": 32,
+    "kept_lst": 507,
+    "kept_esi": 221,
+    "kept_et_daily": 221,
+    "kept_sm": 570,
+    "kept_esi_midday": 119,
+    "share_cloudy_pct": 37.9,
+    "first": "2018-07-30",
+    "last": "2026-11-01"
+  },
+  "field_west": {
+    "overpasses_total": 1922,
+    "removed_cloudy": 744,
+    "removed_no_flag_row": 21,
+    "removed_water": 0,
+    "removed_noisy_period_2025": 27,
+    "lst_poor_accuracy_or_bad_qa": 28,
+    "kept_lst": 509,
+    "kept_esi": 237,
+    "kept_et_daily": 237,
+    "kept_sm": 568,
+    "kept_esi_midday": 128,
+    "share_cloudy_pct": 38.7,
+    "first": "2018-07-30",
+    "last": "2026-11-01"
+  }
+}
