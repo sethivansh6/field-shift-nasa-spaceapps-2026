@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 import folium
+import jinja2
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -25,7 +26,8 @@ import rotations as R                                     # noqa: E402
 import scenario as SC                                     # noqa: E402
 from config import FIELDS, TEST_BOX, TRAIN_BOX, DATA_PROCESSED, RAW_GEE, RAW_POWER  # noqa: E402
 
-st.set_page_config(page_title="FARMS: Field Shift for Lusatia", layout="wide")
+st.set_page_config(page_title="FARMS: Field Shift for Lusatia", page_icon="🌾", layout="wide",
+                   initial_sidebar_state="expanded")
 
 # full-width charts/tables on both old and new Streamlit versions
 _v = tuple(int(x) for x in st.__version__.split(".")[:2])
@@ -132,52 +134,110 @@ def _label(f):
 
 FIELD_LABEL = {f["id"]: _label(f) for f in FIELDS}
 
+# ================================================================ look & feel
+CROP_ICON = {"winter_rye": "🌾", "winter_wheat": "🌾", "winter_barley": "🌾", "triticale": "🌾", "spring_barley": "🌾",
+             "oats": "🌾", "maize": "🌽", "sunflower": "🌻", "winter_rapeseed": "🌼", "potatoes": "🥔",
+             "sugar_beet": "🍠", "lupin": "🌸", "field_pea": "🫛", "soybean": "🫘", "lucerne": "🍀",
+             "clover_grass": "☘️", "sorghum": "🌾", "millet": "🌾"}
+def icon(cid): return CROP_ICON.get(cid, "🌱")
+def chain(crops): return " → ".join(f"{icon(c)} {CROPS[c]['name'].split(' (')[0]}" for c in crops)
+
+st.markdown("""<style>
+.block-container {padding-top: 2.2rem; max-width: 1400px;}
+.hero {background: linear-gradient(120deg, #23401A 0%, #3B6D11 55%, #7A9A3A 100%); color: #F6F4EE;
+       border-radius: 18px; padding: 22px 30px; margin-bottom: 18px;}
+.hero h1 {color: #F6F4EE; font-size: 2.3rem; margin: 0; padding: 0;}
+.hero p {color: #DCE8CF; font-size: 1.08rem; margin: 6px 0 0 0;}
+.hero .tag {display:inline-block; background: rgba(255,255,255,.14); border-radius: 999px; padding: 3px 12px;
+            font-size: .85rem; margin: 10px 6px 0 0; color: #F6F4EE;}
+.step {font-weight: 700; color: #3B6D11; font-size: 1.05rem; margin-bottom: 2px;}
+.best {background: #EEF4E4; border: 1px solid #C9DDB0; border-radius: 14px; padding: 12px 16px;}
+.best .big {font-size: 2.1rem; font-weight: 800; color: #23401A; line-height: 1.1;}
+.best .vs {color: #5F6B5A; font-size: .95rem;}
+.best .crops {font-size: 1.02rem; margin: 6px 0 4px 0;}
+.chips {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 6px 0 14px 0;}
+.chip {border-radius: 14px; padding: 12px 14px; border: 1px solid #E4E0D4; background: #FFFFFF;}
+.chip .t {font-size: .85rem; color: #5F6B5A;} .chip .v {font-size: 1.45rem; font-weight: 800; color: #1E2A22;}
+.chip .s {font-size: .85rem; color: #3D4A3F; margin-top: 2px;}
+.chip.g {border-left: 7px solid #1D9E75;} .chip.y {border-left: 7px solid #E0A526;} .chip.r {border-left: 7px solid #D2453A;}
+.rothead {border-radius: 12px; padding: 10px 14px; color: #fff; margin-bottom: 6px;}
+.rothead .n {font-size: 1.05rem; font-weight: 700;} .rothead .sc {font-size: 2rem; font-weight: 800; line-height: 1.1;}
+.facts {font-size: .9rem; color: #3D4A3F; background: #F4F1E8; border-radius: 10px; padding: 8px 10px; margin: 6px 0;}
+div[data-testid="stTabs"] button p {font-size: 1.05rem; font-weight: 600;}
+div[data-testid="stButtonGroup"] > div {flex-wrap: wrap; overflow: visible; row-gap: 6px;}
+</style>""", unsafe_allow_html=True)
+
 # ================================================================ sidebar
-st.sidebar.title("FARMS")
-st.sidebar.caption("Field Shift for Lusatia: NASA data for crop rotation choices")
+GOALS = {   # one-tap presets for the 0-5 priority sliders
+    "⚖️ Balanced": dict(reliability=3, water=3, soil_health=3, erosion=3, pest_break=3, income=3, forage=0),
+    "💧 Water": dict(reliability=4, water=5, soil_health=2, erosion=2, pest_break=2, income=2, forage=0),
+    "🌱 Soil": dict(reliability=2, water=3, soil_health=5, erosion=5, pest_break=4, income=2, forage=0),
+    "💶 Income": dict(reliability=4, water=2, soil_health=2, erosion=2, pest_break=2, income=5, forage=0),
+    "🐄 Livestock": dict(reliability=3, water=3, soil_health=3, erosion=3, pest_break=3, income=3, forage=5),
+}
+for k in COMP_LABEL:
+    st.session_state.setdefault(f"w_{k}", GOALS["⚖️ Balanced"][k])
+st.session_state.setdefault("goal", "⚖️ Balanced")
+st.session_state.setdefault("forage", False)
 if "fid" not in st.session_state:
     st.session_state.fid = FIELDS[0]["id"]
-fid = st.sidebar.selectbox("Field", [f["id"] for f in FIELDS], format_func=lambda x: FIELD_LABEL[x], key="fid")
+
+
+def _apply_goal():
+    g = st.session_state.get("goal")
+    if g in GOALS:
+        for k, v in GOALS[g].items():
+            st.session_state[f"w_{k}"] = v
+        st.session_state["forage"] = g.startswith("🐄")
+
+
+def _custom_goal():
+    st.session_state["goal"] = None
+
+
+st.sidebar.markdown("## 🌾 FARMS")
+st.sidebar.caption("Field Shift for Lusatia: NASA data for crop rotation choices")
+fid = st.session_state.fid
 prof = D["profiles"][fid]
 
-st.sidebar.subheader("Your current rotation")
 default_cur = D["rotations"][fid]["strategies"][0]["crops"]
-cur = []
-for i in range(4):
-    cur.append(st.sidebar.selectbox(f"Year {i + 1}", CROP_IDS, index=CROP_IDS.index(default_cur[i]),
-                                    format_func=lambda x: CROPS[x]["name"], key=f"cur_{fid}_{i}"))
-st.sidebar.caption("Pre-filled from the 2018 and 2022 EU satellite crop maps. Change it to match your farm.")
+with st.sidebar.expander("🔄 Your current rotation", expanded=False):
+    cur = []
+    for i in range(4):
+        cur.append(st.selectbox(f"Year {i + 1}", CROP_IDS, index=CROP_IDS.index(default_cur[i]),
+                                format_func=lambda x: f"{icon(x)} {CROPS[x]['name']}", key=f"cur_{fid}_{i}"))
+    st.caption("Pre-filled from the 2018 and 2022 EU satellite crop maps. Change it to match your farm.")
 
-st.sidebar.subheader("What matters to you")
-weights = {k: st.sidebar.slider(v, 0, 5, 0 if k == "forage" else 3, key=f"w_{k}",
-                                help=("Feed for your own animals or crops sold to a biogas plant. Leave at 0 if "
-                                      "you have neither.") if k == "forage" else None)
-           for k, v in COMP_LABEL.items()}
+with st.sidebar.expander("🎚️ Fine-tune priorities (0 = ignore, 5 = very important)", expanded=False):
+    weights = {k: st.slider(v, 0, 5, key=f"w_{k}", on_change=_custom_goal,
+                            help=("Feed for your own animals or crops sold to a biogas plant. Leave at 0 if "
+                                  "you have neither.") if k == "forage" else None)
+               for k, v in COMP_LABEL.items()}
 
-st.sidebar.subheader("Your constraints")
-irrigation = st.sidebar.checkbox("I can irrigate", False)
-forage = st.sidebar.checkbox("I have livestock or a biogas plant (forage crops OK)", False, key="forage")
-niche = st.sidebar.checkbox("Niche markets OK (e.g. proso millet)", False)
-exclude = st.sidebar.multiselect("Crops I cannot grow (machinery, market)", CROP_IDS,
-                                 format_func=lambda x: CROPS[x]["name"])
+with st.sidebar.expander("🚜 Your farm", expanded=False):
+    irrigation = st.checkbox("I can irrigate", False)
+    forage = st.checkbox("I have livestock or a biogas plant (forage crops OK)", key="forage")
+    niche = st.checkbox("Niche markets OK (e.g. proso millet)", False)
+    exclude = st.multiselect("Crops I cannot grow (machinery, market)", CROP_IDS,
+                             format_func=lambda x: f"{icon(x)} {CROPS[x]['name']}")
 
-with st.sidebar.expander("I have a soil test"):
+with st.sidebar.expander("🧪 I have a soil test"):
     use_test = st.checkbox("Use my soil test instead of SoilGrids")
     sg = prof["soil_terrain"]
     ph_in = st.number_input("pH", 3.5, 8.5, float(sg.get("ph") or 6.0), 0.1)
     sand_in = st.number_input("Sand %", 0.0, 100.0, float(sg.get("sand_pct") or 70.0), 1.0)
 soil_override = (("ph", ph_in), ("sand_pct", sand_in)) if use_test else ()
 
-st.sidebar.subheader("Climate scenario (what if?)")
-dR = st.sidebar.slider("Summer rain change (Jun-Aug)", -40, 20, 0, 5, format="%d%%", key="sc_rain") / 100
-dT = st.sidebar.slider("Warmer by", 0.0, 3.0, 0.0, 0.5, format="+%.1f C", key="sc_temp")
-if (dR or dT) and not (RAW_POWER / "power_daily.csv").exists():   # e.g. a deployment without the raw weather file
-    st.sidebar.error("Climate scenario unavailable here: the NASA POWER weather file "
-                     "(data/raw/power/power_daily.csv) is missing. Showing today's climate.")
-    dR, dT = 0.0, 0.0
+with st.sidebar.expander("🌦️ Climate what-if", expanded=True):
+    dR = st.slider("Summer rain change (Jun-Aug)", -40, 20, 0, 5, format="%d%%", key="sc_rain") / 100
+    dT = st.slider("Warmer by", 0.0, 3.0, 0.0, 0.5, format="+%.1f C", key="sc_temp")
+    if (dR or dT) and not (RAW_POWER / "power_daily.csv").exists():   # e.g. a deployment without the raw weather file
+        st.error("Climate scenario unavailable here: the NASA POWER weather file "
+                 "(data/raw/power/power_daily.csv) is missing. Showing today's climate.")
+        dR, dT = 0.0, 0.0
+    st.caption("Replays 2015-2025 with changed weather through the same model. A sensitivity test, "
+               "not a climate projection.")
 scenario_on = bool(dR or dT)
-st.sidebar.caption("Replays 2015-2025 with changed weather through the same model. A sensitivity test, "
-                   "not a climate projection.")
 if scenario_on:
     st.sidebar.warning(f"Scenario on: summer rain {dR:+.0%}, +{dT:.1f} C. Rotation scores and replay use the "
                        "changed weather; My field shows observed data.")
@@ -197,18 +257,55 @@ prof = prof_used[fid]
 st.sidebar.divider()
 st.sidebar.caption("Supports, does not replace, your judgement and local advisers.")
 
-# ================================================================ header
-st.title("FARMS: Field Shift for Lusatia")
-st.markdown(f"**{FIELD_LABEL[fid]}**  ·  {prof['soil_terrain']['texture_class']}, "
-            f"current crops seen from space: "
-            + ", ".join(f"{y}: {n}" for y, n in (prof.get("crops_eucropmap") or {}).items()))
+# ================================================================ header + 3 steps
+st.markdown("""<div class="hero"><h1>🌾 FARMS: Field Shift for Lusatia</h1>
+<p>Which crop rotation will hold up in drier, hotter summers? NASA satellite data, checked for your field.</p>
+<span class="tag">🛰️ 8 NASA datasets</span><span class="tag">🤖 ML trained on 13,000+ fields</span>
+<span class="tag">📍 Real fields in Lusatia</span></div>""", unsafe_allow_html=True)
+
+s1, s2, s3 = st.columns([1, 1.25, 1.2], gap="large")
+with s1:
+    st.markdown('<div class="step">① Pick your field</div>', unsafe_allow_html=True)
+    st.selectbox("Field", [f["id"] for f in FIELDS], format_func=lambda x: FIELD_LABEL[x], key="fid",
+                 label_visibility="collapsed")
+    seen = prof.get("crops_eucropmap") or {}
+    st.caption(f"🟫 {prof['soil_terrain']['texture_class']} soil  ·  🛰️ seen from space: "
+               + ", ".join(f"{y}: {n}" for y, n in seen.items()))
+    runs = []
+    for c in cur:
+        if runs and runs[-1][0] == c:
+            runs[-1][1] += 1
+        else:
+            runs.append([c, 1])
+    st.caption("🔄 Your rotation now: " + " → ".join(f"{icon(c)} {CROPS[c]['name'].split(' (')[0]}"
+                                                  + (f" ×{n}" if n > 1 else "") for c, n in runs)
+               + "  (edit in the sidebar)")
+with s2:
+    st.markdown('<div class="step">② What matters most to you?</div>', unsafe_allow_html=True)
+    st.pills("Goal", list(GOALS), key="goal", on_change=_apply_goal, label_visibility="collapsed")
+    st.caption("💧 save water · 🌱 healthy soil · 💶 keep income · 🐄 livestock or biogas. One tap sets your "
+               "priorities; fine-tune each one in the sidebar"
+               + (" (now: custom)." if not st.session_state.get("goal") else "."))
+strategies = result["strategies"]
+with s3:
+    st.markdown('<div class="step">③ Your best option</div>', unsafe_allow_html=True)
+    cur_s = next(s for s in strategies if s["kind"] == "current")
+    best = max((s for s in strategies if s["kind"] != "current"), key=lambda s: s["score"])
+    bm, cm = best["metrics"], cur_s["metrics"]
+    st.markdown(f"""<div class="best"><div class="big">{best['score']:.0f} <span class="vs">points ·
+{best['label']}</span></div><div class="vs">Your current rotation scores {cur_s['score']:.0f}</div>
+<div class="crops">{chain(best['crops'])}</div>
+<div class="vs">💧 water gap {bm['water_deficit_mm']} vs {cm['water_deficit_mm']} mm/yr · 🟫 bare soil
+{bm['bare_months']} vs {cm['bare_months']} months/yr</div></div>""", unsafe_allow_html=True)
+    st.caption("Why, risks and what to check: see **🔄 Compare rotations** below.")
 
 _f = next(f for f in FIELDS if f["id"] == fid)
 if not (TRAIN_BOX[0] <= _f["lon"] <= TRAIN_BOX[2] and TRAIN_BOX[1] <= _f["lat"] <= TRAIN_BOX[3]):
     st.error("This field is outside the model's training area (Germany + neighbours): model-based results are "
              "extrapolation. Climate, soil and satellite facts are still valid.")
 
-tab_map, tab_field, tab_rot, tab_how = st.tabs(["Map", "My field", "Compare rotations", "How it works & limits"])
+tab_rot, tab_field, tab_map, tab_how = st.tabs(["🔄 Compare rotations", "🌱 My field", "🗺️ Stress map",
+                                                "📖 How it works & limits"])
 
 # ================================================================ tab 1: map
 with tab_map:
@@ -257,7 +354,15 @@ with tab_map:
         lats, lons = [f["lat"] for f in FIELDS], [f["lon"] for f in FIELDS]
         m = folium.Map(location=[np.mean(lats), np.mean(lons)], zoom_start=10, tiles="OpenStreetMap",
                        scrollWheelZoom=False)
-        m.fit_bounds([[min(lats) - 0.05, min(lons) - 0.08], [max(lats) + 0.05, max(lons) + 0.08]])  # all fields in view
+        _bb = [[min(lats) - 0.05, min(lons) - 0.08], [max(lats) + 0.05, max(lons) + 0.08]]      # all fields in view
+        # The map sits in a tab that is hidden on first load, so Leaflet starts with size 0. Fit the view once the
+        # map is actually visible (fit_bounds at build time would zoom out to the whole world).
+        fit = folium.MacroElement()
+        fit._template = jinja2.Template(
+            "{% macro script(this, kwargs) %}(function() { var _m = " + m.get_name() + "; var _t = setInterval("
+            "function() { if (_m.getSize().x > 50) { _m.invalidateSize(); _m.fitBounds(" + json.dumps(_bb) + ");"
+            " clearInterval(_t); } }, 200); })();{% endmacro %}")
+        fit.add_to(m)
         w_, s_, e_, n_ = TEST_BOX
         folium.Rectangle([[s_, w_], [n_, e_]], color="#534AB7", fill=False, weight=1).add_to(m)
         if cuts is not None:
@@ -326,19 +431,38 @@ with tab_map:
 with tab_field:
     fr, ht, wa, so = prof["frost"], prof["heat"], prof["water"], prof["soil_terrain"]
     s2 = prof.get("bare_soil_sentinel2") or {}
-    k = st.columns(6)
-    k[0].metric("Last spring frost", fr["last_spring_median"], help=f"1 year in 10 it is after {fr['last_spring_1_in_10']}. NASA POWER 1991-2020.")
-    k[1].metric("Hot days > 30 C (per yr)", ht["heat_days_30_recent"],
-                f"{ht['heat_days_30_recent'] - ht['heat_days_30_normal']:+.1f} vs 1991-2020", delta_color="inverse")
-    k[2].metric("Water balance Apr-Sep", f"{wa['water_balance_apr_sep_recent_mm']:.0f} mm",
-                f"{wa['water_balance_apr_sep_recent_mm'] - wa['water_balance_apr_sep_normal_mm']:+.0f} mm vs 1991-2020",
-                help="Rain minus reference evapotranspiration (FAO-56 ET0 from NASA POWER). Negative = crops rely on stored soil water.")
-    k[3].metric("Soil water store", f"{so['awc_mm_top_60cm']:.0f} mm", help=f"{so['texture_class']}, {so['awc_pct_volume']} % available water (SoilGrids, top 60 cm).")
-    k[4].metric("Bare soil (months/yr)", f"{s2.get('bare_months_per_year', '-')}",
-                help="Sentinel-2 10 m: months with field NDVI < 0.3. Usually bare: " + (", ".join(s2.get("usually_bare_months") or []) or "varies"))
-    k[5].metric("Heavy rain (days/yr)", f"{wa.get('heavy_rain_days_recent', '-')}",
-                help="Days with > 20 mm rain, 2011-2025 (NASA POWER). Heavy rain on bare or sandy soil washes "
-                     "away topsoil and nutrients.")
+    def _lvl(v, g, r, low_bad=False):           # traffic light: green / yellow / red
+        if v is None:
+            return "y"
+        return ("g" if v >= g else "r" if v < r else "y") if low_bad else ("g" if v < g else "r" if v >= r else "y")
+    _doy = lambda d: pd.Timestamp(f"2001 {d}").dayofyear if d else None
+    hot, hot0 = ht["heat_days_30_recent"], ht["heat_days_30_normal"]
+    wb, wb0 = wa["water_balance_apr_sep_recent_mm"], wa["water_balance_apr_sep_normal_mm"]
+    bare, heavy = s2.get("bare_months_per_year"), wa.get("heavy_rain_days_recent")
+    chips = [
+        ("❄️ Late spring frost", fr["last_spring_median"], _lvl(_doy(fr["last_spring_1_in_10"]), 116, 126),
+         f"1 year in 10 as late as {fr['last_spring_1_in_10']}. Matters for early sowing.",
+         "NASA POWER 1991-2020. Green before 26 Apr, red from 6 May (1-in-10 date)."),
+        ("🔥 Hot days > 30 °C", f"{hot} /yr", _lvl(hot, 8, 15),
+         f"{hot - hot0:+.1f} vs 1991-2020 ({hot0}).", "NASA POWER. Green under 8, red from 15 per year."),
+        ("💧 Water gap Apr-Sep", f"{-wb:.0f} mm", _lvl(wb, -150, -250, low_bad=True),
+         f"The air takes more water than rain gives. Gap {wb0 - wb:+.0f} mm vs 1991-2020.",
+         "Rain minus FAO-56 reference evapotranspiration (NASA POWER). Green under 150 mm gap, red over 250 mm."),
+        ("🪣 Soil water store", f"{so['awc_mm_top_60cm']:.0f} mm", _lvl(so["awc_mm_top_60cm"], 100, 60, low_bad=True),
+         f"{so['texture_class']}: roots can draw on this much.",
+         f"SoilGrids, top 60 cm, {so['awc_pct_volume']} % available water. Green from 100 mm, red under 60 mm."),
+        ("🟫 Bare soil", f"{bare if bare is not None else '-'} months/yr", _lvl(bare, 1, 3),
+         "Usually bare: " + (", ".join(s2.get("usually_bare_months") or []) or "varies") + ".",
+         "Sentinel-2 10 m, months with field NDVI < 0.3. Green under 1, red over 3."),
+        ("🌧️ Heavy rain", f"{heavy if heavy is not None else '-'} days/yr", _lvl(heavy, 1, 3),
+         "Days over 20 mm: wash topsoil off bare, sandy fields.",
+         "NASA POWER 2011-2025. Green under 1, red from 3 per year."),
+    ]
+    st.markdown("#### Your field at a glance")
+    st.markdown('<div class="chips">' + "".join(
+        f'<div class="chip {c}" title="{h}"><div class="t">{t}</div><div class="v">{v}</div><div class="s">{x}</div></div>'
+        for t, v, c, x, h in chips) + "</div>", unsafe_allow_html=True)
+    st.caption("🟢 fine  ·  🟡 watch  ·  🔴 a real risk for crops here. Hover a card for the source and cut-offs.")
 
     st.markdown(f"**In plain words:** in a typical growing season this field loses about "
                 f"{-wa['water_balance_apr_sep_recent_mm']:.0f} mm more water to the air than falls as rain, while the soil "
@@ -452,50 +576,44 @@ with tab_field:
 
 # ================================================================ tab 3: compare rotations
 with tab_rot:
-    strategies = result["strategies"]
     st.markdown(f"Checked **{result['n_candidates']:,}** rotations that pass the farming rules for this field. "
-                "Scores are 0-100 per goal, combined with your priorities from the sidebar.")
+                "Scores are 0-100, combined from your priorities (step ②).")
     if scenario_on:
         st.info(f"Climate scenario on: summer rain {dR:+.0%}, temperature +{dT:.1f} C. "
                 "Scores below use the changed weather.")
-    cols = st.columns(len(strategies))
+    cols = st.columns(len(strategies), gap="medium")
     for col, s in zip(cols, strategies):
-        with col:
-            st.markdown(f"<div style='border-top:4px solid {KIND_COLOR[s['kind']]};padding-top:6px'>"
-                        f"<b>{s['label']}</b></div>", unsafe_allow_html=True)
-            st.markdown(f"#### {s['score']:.0f} / 100")
+        with col, st.container(border=True):
+            sub = ""
             if scenario_on and tuple(s["crops"]) in base_scores:
-                d_ = s["score"] - base_scores[tuple(s["crops"])]
-                st.caption(f"{d_:+.1f} points vs today's climate")
+                sub = f"<div>{s['score'] - base_scores[tuple(s['crops'])]:+.1f} points vs today's climate</div>"
+            st.markdown(f"<div class='rothead' style='background:{KIND_COLOR[s['kind']]}'>"
+                        f"<div class='n'>{s['label']}</div><div class='sc'>{s['score']:.0f} / 100</div>{sub}</div>",
+                        unsafe_allow_html=True)
             for i, cid in enumerate(s["crops"]):
                 cc = [c["crop"] for c in s["cover_crops"] if c["after_year"] == i + 1]
-                st.markdown(f"Year {i + 1}: **{CROPS[cid]['name']}**" + (f"  \n  then cover: {cc[0]}" if cc else ""))
+                st.markdown(f"Year {i + 1}: {icon(cid)} **{CROPS[cid]['name']}**"
+                            + (f"  \n  🌱 then cover: {cc[0]}" if cc else ""))
+            mtr = s["metrics"]
+            st.markdown(f"<div class='facts'>💧 water gap <b>{mtr['water_deficit_mm']} mm/yr</b> · 🟫 bare "
+                        f"<b>{mtr['bare_months']} months/yr</b><br>🫛 legumes <b>{mtr['legumes']}</b> · 💶 margin "
+                        f"<b>~{mtr['gross_margin_eur_ha_indicative']} EUR/ha</b> (indicative)</div>",
+                        unsafe_allow_html=True)
+            with st.expander("💡 Why", expanded=True):
+                for x in s["why"]:
+                    st.markdown(f"- {x}")
             comp = pd.DataFrame({"goal": [COMP_LABEL[k] for k in s["components"]], "score": list(s["components"].values())})
             fc = px.bar(comp, x="score", y="goal", orientation="h", range_x=[0, 100])
             fc.update_traces(marker_color=KIND_COLOR[s["kind"]])
-            fc.update_layout(height=250, margin=dict(t=10, b=10, l=10, r=10), yaxis_title="", xaxis_title="")
-            st.plotly_chart(fc, key=f"comp_{s['kind']}", **WIDE)
-            mtr = s["metrics"]
-            st.caption(f"Water deficit **{mtr['water_deficit_mm']} mm/yr** · bare **{mtr['bare_months']} months/yr** · "
-                       f"legumes **{mtr['legumes']}** · margin **~{mtr['gross_margin_eur_ha_indicative']} EUR/ha** (indicative)")
-            with st.expander("Why", expanded=True):
-                for x in s["why"]:
-                    st.markdown(f"- {x}")
-            with st.expander("Evidence"):
-                for x in s["evidence"]:
-                    st.markdown(f"- {x}")
-            with st.expander("Benefits"):
-                for x in s["benefits"]:
-                    st.markdown(f"- {x}")
-            with st.expander("Information gaps"):
-                for x in s["gaps"]:
-                    st.markdown(f"- {x}")
-            with st.expander("Risks"):
-                for x in s["risks"]:
-                    st.markdown(f"- {x}")
-            with st.expander("Check locally"):
-                for x in s["check_locally"]:
-                    st.markdown(f"- {x}")
+            fc.update_layout(height=240, margin=dict(t=10, b=10, l=10, r=10), yaxis_title="", xaxis_title="",
+                             paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)")
+            st.markdown("**Score by goal**")
+            st.plotly_chart(fc, key=f"comp_{s['kind']}", config={"displayModeBar": False}, **WIDE)
+            for ttl, key_ in (("✅ Benefits", "benefits"), ("⚠️ Risks", "risks"), ("🔍 Check locally", "check_locally"),
+                              ("📊 Evidence", "evidence"), ("❓ Information gaps", "gaps")):
+                with st.expander(ttl):
+                    for x in s[key_]:
+                        st.markdown(f"- {x}")
 
     st.subheader("How each rotation would have done in the real weather of 2015-2025")
     rows = []
