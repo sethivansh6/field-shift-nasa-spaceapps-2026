@@ -165,8 +165,4 @@ The crop-vigour model (LightGBM with SHAP explanations and calibrated uncertaint
 
 ## Team
 
-Vansh Sethi (team FARMS), MSc student, BTU Cottbus-Senftenberg
-
-## Licence
-
-Code: MIT. Each dataset keeps its own licence and terms (NASA open data, Copernicus Sentinel data, SoilGrids, EUCROPMAP, DWD CC BY 4.0).
+Vansh Sethi (team FARMS)
