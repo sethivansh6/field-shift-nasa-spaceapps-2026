@@ -1,5 +1,5 @@
 # FARMS: Field Shift for Lusatia
-
+**Try it live:** https://field-shift-nasa-spaceapps-2026.streamlit.app (first load may take ~30 s if the app was asleep)
 **NASA satellite data turned into crop-rotation choices a farmer can check, weigh and question.**
 
 Team FARMS · NASA Space Apps Challenge 2026 · Challenge: *Field Shift: Adapting Farms with NASA Data* · Local event: Cottbus, Germany
