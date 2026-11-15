@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 import rotations as R                                     # noqa: E402
 import scenario as SC                                     # noqa: E402
-from config import FIELDS, TEST_BOX, TRAIN_BOX, DATA_PROCESSED, RAW_GEE  # noqa: E402
+from config import FIELDS, TEST_BOX, TRAIN_BOX, DATA_PROCESSED, RAW_GEE, RAW_POWER  # noqa: E402
 
 st.set_page_config(page_title="FARMS: Field Shift for Lusatia", layout="wide")
 
@@ -171,6 +171,10 @@ soil_override = (("ph", ph_in), ("sand_pct", sand_in)) if use_test else ()
 st.sidebar.subheader("Climate scenario (what if?)")
 dR = st.sidebar.slider("Summer rain change (Jun-Aug)", -40, 20, 0, 5, format="%d%%", key="sc_rain") / 100
 dT = st.sidebar.slider("Warmer by", 0.0, 3.0, 0.0, 0.5, format="+%.1f C", key="sc_temp")
+if (dR or dT) and not (RAW_POWER / "power_daily.csv").exists():   # e.g. a deployment without the raw weather file
+    st.sidebar.error("Climate scenario unavailable here: the NASA POWER weather file "
+                     "(data/raw/power/power_daily.csv) is missing. Showing today's climate.")
+    dR, dT = 0.0, 0.0
 scenario_on = bool(dR or dT)
 st.sidebar.caption("Replays 2015-2025 with changed weather through the same model. A sensitivity test, "
                    "not a climate projection.")
@@ -248,7 +252,7 @@ with tab_map:
                 share = ((sub < lo) if low_bad else (sub > hi)).mean()
                 st.metric(f"Points in the red class, {year}", f"{share:.0%}")
                 st.caption(f"Season average: {sub.mean():.3g} {unit_}")
-        st.caption("Squares = the three demo fields. Box = Lusatia test area (never used to train the model).")
+        st.caption("Squares = the demo fields (darker = the one selected). Box = Lusatia test area (never used to train the model).")
     with c1:
         lats, lons = [f["lat"] for f in FIELDS], [f["lon"] for f in FIELDS]
         m = folium.Map(location=[np.mean(lats), np.mean(lons)], zoom_start=10, tiles="OpenStreetMap",
@@ -312,7 +316,7 @@ with tab_map:
         else:
             first_s, last_s, tunit_s = f"{first:.3g}", f"{last:.3g}", tunit
         gaps = [y for y in yrs if ty.loc[ty["year"] == y, tcol].isna().all()]
-        note = (" All three fields fall in the same data cell, so their lines lie on top of each other."
+        note = (" All fields fall in the same data cell, so their lines lie on top of each other."
                 if same_cell else "")
         note += (f" No data for {', '.join(map(str, gaps))}." if gaps else "")
         st.caption(f"{tsel}: 10-year average went from {first_s} to {last_s} {tunit_s} "

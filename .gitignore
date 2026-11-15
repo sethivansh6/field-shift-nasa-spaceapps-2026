@@ -14,7 +14,14 @@ __pycache__/
 *.key
 
 # Raw downloads (re-created by the src/extract_*.py scripts)
-data/raw/
+data/raw/*
+!data/raw/power/
+data/raw/power/*
+!data/raw/power/power_daily.csv
+!data/raw/gee/
+data/raw/gee/*
+!data/raw/gee/grace_mascon.csv
+!data/raw/gee/eucropmap_legend.json
 data/processed/training_parts/
 
 # Backups and scratch
